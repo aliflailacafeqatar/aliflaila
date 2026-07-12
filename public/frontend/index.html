@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Alif Laila Cafe & Restaurant | Qatar</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Reset & General */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        @keyframes tickerScroll {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* Scroll Reveal Utility Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* --- Top Bar --- */
+        .top-bar {
+            background-color: #0a0a0a;
+            color: #eeeeee;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 20;
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .top-bar-left i {
+            margin-right: 6px;
+            color: #d4af37;
+        }
+
+        /* --- Glassmorphism Navigation --- */
+        .navbar-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .navbar {
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .nav-group {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .nav-group.left { justify-content: flex-start; }
+        .nav-group.right { justify-content: flex-end; gap: 30px; }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .nav-links li a {
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover { color: #d4af37; }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: #d4af37;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links li a:hover::after,
+        .nav-links li a.active::after {
+            width: 100%;
+        }
+
+        /* Brand Logo */
+        .brand-logo {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+            flex: 0 0 auto;
+            animation: fadeInUp 0.8s ease-out;
+            z-index: 1002;
+        }
+
+        .brand-logo h1 {
+            font-weight: 400;
+            font-size: 19px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #111;
+        }
+
+        .brand-logo span {
+            font-size: 9px;
+            letter-spacing: 8px;
+            margin-top: 6px;
+            color: #777;
+        }
+
+        /* Modern Button */
+        .btn-reserve {
+            border: 1px solid #111;
+            background: transparent;
+            color: #111;
+            padding: 12px 28px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.4s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .btn-reserve::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn-reserve:hover::before { left: 0; }
+        .btn-reserve:hover { color: #fff; border-color: #111; }
+
+        /* --- Hamburger Menu (Mobile) --- */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 26px;
+            height: 18px;
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: #111;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(15px);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* --- Mobile Full Screen Menu --- */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: right 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .mobile-nav-links li {
+            margin: 25px 0;
+            overflow: hidden;
+        }
+
+        .mobile-nav-links li a {
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 4px;
+            color: #111;
+            text-transform: uppercase;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .mobile-menu.active .mobile-nav-links li a {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Staggered animation for mobile menu links */
+        .mobile-menu.active .mobile-nav-links li:nth-child(1) a { transition-delay: 0.2s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(2) a { transition-delay: 0.3s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(3) a { transition-delay: 0.4s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(4) a { transition-delay: 0.5s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(5) a { transition-delay: 0.6s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(6) a { transition-delay: 0.7s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(7) a { transition-delay: 0.8s; }
+
+        .mobile-nav-links li a:hover,
+        .mobile-nav-links li a.active {
+            color: #d4af37;
+        }
+
+        .mobile-menu .btn-reserve {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .mobile-menu.active .btn-reserve {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.9s;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: calc(100vh - 110px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5));
+            z-index: 2;
+        }
+
+        .hero-text-container {
+            text-align: center;
+            color: #ffffff;
+            z-index: 3;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .hero-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 85px;
+            line-height: 1.25;
+            text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.5);
+            font-weight: 400;
+            opacity: 0;
+            animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation-delay: 0.3s;
+        }
+
+        /* --- Floating Widgets --- */
+        .whatsapp-widget {
+            position: fixed; 
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 90;
+            transition: transform 0.3s ease;
+            animation: pulseGlow 2s infinite;
+        }
+
+        .whatsapp-widget:hover { transform: translateY(-5px) scale(1.05); }
+
+        .language-selector {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            z-index: 90;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .language-selector:hover {
+            background: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .language-selector img {
+            width: 18px;
+            border-radius: 2px;
+        }
+
+        /* --- Our Story Section --- */
+        .our-story {
+            background-color: #faf9f6; 
+            padding: 120px 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .story-container {
+            max-width: 1100px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .story-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            overflow: hidden;
+        }
+
+        .story-image img {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            display: block;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            transition: transform 0.7s ease; 
+        }
+
+        .story-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .story-content { flex: 1; }
+
+        .story-subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: #111;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .story-title {
+            font-size: 32px;
+            font-weight: 500;
+            letter-spacing: 5px;
+            color: #111;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .story-text {
+            font-size: 13px;
+            line-height: 1.9;
+            color: #444;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .btn-learn {
+            display: inline-block;
+            background-color: #050505;
+            color: #ffffff;
+            padding: 18px 45px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid #050505;
+            transition: all 0.3s ease;
+        }
+
+        .btn-learn:hover {
+            background-color: transparent;
+            color: #050505;
+        }
+
+        /* --- Parallax Banner Section --- */
+        .parallax-banner {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .banner-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5));
+            z-index: 2;
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .banner-title {
+            color: #ffffff;
+            font-size: 34px;
+            font-weight: 500;
+            letter-spacing: 5px;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .banner-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-solid {
+            background-color: #ffffff;
+            color: #111111;
+            padding: 16px 45px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: 1px solid #ffffff;
+            display: inline-block;
+        }
+
+        .btn-solid:hover {
+            background-color: transparent;
+            color: #ffffff;
+        }
+
+        /* --- Diners Experiences Header --- */
+        .experiences-header {
+            text-align: center;
+            padding: 100px 20px 60px;
+            background-color: #ffffff;
+        }
+
+        .experiences-header h2 {
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #111;
+        }
+
+        /* --- Split Screen Section --- */
+        .split-section {
+            display: flex;
+            width: 100%;
+            background-color: #ffffff;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .split-image {
+            flex: 1;
+            min-height: 550px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .split-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: transform 0.8s ease;
+        }
+
+        .split-section:hover .split-image img {
+            transform: scale(1.05);
+        }
+
+        .split-content-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 10%;
+            background-color: #ffffff;
+        }
+
+        .split-content {
+            max-width: 500px;
+        }
+
+        .split-content h3 {
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            color: #111;
+        }
+
+        .split-content p {
+            font-size: 13px;
+            line-height: 1.9;
+            color: #555;
+            margin-bottom: 35px;
+        }
+
+        /* --- Continuous Scrolling Marquee (Ticker) --- */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background-color: #ffffff;
+            padding: 18px 0;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        .ticker-move {
+            display: flex;
+            width: max-content;
+            animation: tickerScroll 35s linear infinite;
+        }
+
+        .ticker-move:hover {
+            animation-play-state: paused;
+        }
+
+        .ticker-content {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .ticker-item {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #666;
+            text-transform: uppercase;
+            margin: 0 15px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .ticker-item:hover {
+            color: #000;
+        }
+
+        .ticker-dot {
+            font-size: 10px;
+            color: #b0b0b0;
+            margin: 0 5px;
+        }
+
+        /* --- Instagram/Gallery Section --- */
+        .gallery-section {
+            background-color: #faf9f6;
+            padding: 60px 0 0; 
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .gallery-header h3 {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: #111;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-header h3:hover {
+            color: #d4af37;
+        }
+
+        .gallery-grid {
+            display: flex;
+            width: 100%;
+            height: 500px;
+        }
+
+        .gallery-item {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 28px;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        }
+
+        .gallery-item:hover .gallery-play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* --- Modern Dark Footer --- */
+        .site-footer {
+            background-color: #050505;
+            color: #aaaaaa;
+            padding: 80px 40px 30px;
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .footer-col.brand {
+            flex: 1.5;
+        }
+
+        .footer-col h4 {
+            color: #ffffff;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #ffffff;
+            margin-bottom: 20px;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        .footer-logo span {
+            display: block;
+            font-size: 8px;
+            letter-spacing: 6px;
+            margin-top: 5px;
+            color: #777;
+            text-align: center;
+        }
+
+        .footer-col p {
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        .footer-links a:hover {
+            color: #d4af37;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        .footer-socials a {
+            transition: color 0.3s ease;
+        }
+
+        .footer-socials a:hover {
+            color: #d4af37;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 5px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 8px 0;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 11px;
+            outline: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .newsletter-input::placeholder {
+            color: #777;
+        }
+
+        .newsletter-btn {
+            background: transparent;
+            color: #ffffff;
+            border: none;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            color: #d4af37;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1a1a1a;
+            max-width: 1400px;
+            margin: 60px auto 0;
+            padding-top: 25px;
+            text-align: center;
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            color: #555;
+            text-transform: uppercase;
+        }
+
+        /* --- Super Mobile Responsiveness --- */
+        @media (max-width: 1200px) {
+            .nav-group { display: none; }
+            .navbar { justify-content: center; position: relative; }
+            .brand-logo { margin: 0 auto; }
+            .hamburger { display: flex; position: absolute; right: 40px; }
+        }
+
+        @media (max-width: 900px) {
+            .story-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 50px;
+            }
+            .story-image { justify-content: center; }
+            .story-image img { max-width: 100%; }
+            .story-subtitle { font-size: 24px; }
+            .story-title { font-size: 28px; }
+            .banner-title { font-size: 28px; }
+
+            .split-section { flex-direction: column; }
+            .split-image { min-height: 350px; }
+            .split-content-wrapper { padding: 60px 20px; text-align: center; }
+            .experiences-header { padding: 70px 20px 40px; }
+            .experiences-header h2 { font-size: 20px; }
+
+            .gallery-grid { flex-wrap: wrap; height: auto; }
+            .gallery-item { flex: 0 0 50%; height: 350px; }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar { flex-direction: column; gap: 8px; text-align: center; padding: 10px 15px; }
+            .top-bar-left { justify-content: center; gap: 10px; }
+            .top-bar-left span { display: block; }
+
+            .navbar { padding: 12px 20px; }
+            .hamburger { right: 20px; }
+            .brand-logo h1 { font-size: 16px; letter-spacing: 2px; }
+            .brand-logo span { font-size: 8px; letter-spacing: 5px; }
+
+            .hero { height: 60vh; min-height: 450px; } 
+            .hero-title { font-size: 45px; line-height: 1.2; padding: 0 10px; }
+
+            .our-story { padding: 40px 20px; } /* Slightly reduced gap on mobile to tighten layout */
+            .story-subtitle { font-size: 18px; letter-spacing: 2px; }
+            .story-title { font-size: 22px; letter-spacing: 3px; }
+            .story-text { font-size: 13px; line-height: 1.7; }
+            .story-container { gap: 35px; }
+
+            .parallax-banner { height: 50vh; min-height: 350px; }
+            .parallax-bg { background-attachment: scroll; }
+            .banner-title { font-size: 20px; letter-spacing: 3px; margin-bottom: 25px; }
+            .banner-buttons { flex-direction: column; gap: 15px; width: 100%; max-width: 300px; margin: 0 auto; }
+            .btn-solid { width: 100%; padding: 14px 20px; }
+
+            .split-content h3 { font-size: 18px; }
+            .split-content p { font-size: 13px; }
+            .ticker-item { font-size: 9px; margin: 0 10px; }
+
+            .whatsapp-widget { width: 48px; height: 48px; font-size: 24px; bottom: 20px; right: 20px; }
+            .language-selector { padding: 8px 14px; font-size: 10px; bottom: 20px; left: 20px; }
+
+            .site-footer { padding: 60px 20px 30px; text-align: center; }
+            .footer-col { min-width: 100%; align-items: center; display: flex; flex-direction: column;}
+            .footer-socials { justify-content: center; }
+            .newsletter-form { width: 100%; max-width: 300px; margin: 15px auto 0; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { height: 55vh; min-height: 400px; }
+            .hero-title { font-size: 36px; }
+            .top-bar-left { flex-direction: column; gap: 5px; }
+            
+            .mobile-nav-links li a { font-size: 14px; letter-spacing: 3px; }
+            
+            .gallery-item { flex: 0 0 100%; height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <span><i class="fas fa-phone-alt"></i> +971 777723547</span>
+                <span><i class="fas fa-asterisk"></i> LUXURY AVENUE, DOHA, QATAR</span>
+            </div>
+            <div class="top-bar-right">
+                <span>MON - THU: 9AM TO 12AM | FRI - SUN: 9AM TO 1AM</span>
+            </div>
+        </div>
+
+        <div class="navbar-wrapper">
+            <nav class="navbar">
+                
+                <div class="nav-group left">
+                    <ul class="nav-links">
+                        <li><a href="index.html" class="active">HOME</a></li>
+                        <li><a href="menu.html">MENU</a></li>
+                        <li><a href="bookatable.html">RESERVATIONS</a></li>
+                        <li><a href="blog.html">BLOG</a></li>
+                    </ul>
+                </div>
+
+                <div class="brand-logo">
+                    <h1>Alif Laila Cafe & <br>Restaurant</h1>
+                    <span>QATAR</span>
+                </div>
+
+                <div class="nav-group right">
+                    <ul class="nav-links">
+                        <li><a href="aboutus.html">ABOUT US</a></li>
+                        <li><a href="gallery.html">GALLERY</a></li>
+                        <li><a href="contactus.html">CONTACT US</a></li>
+                    </ul>
+                    <button class="btn-reserve" onclick="window.location.href='bookatable.html'">RESERVE A TABLE</button>
+                </div>
+
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </nav>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html" class="active">HOME</a></li>
+            <li><a href="menu.html">MENU</a></li>
+            <li><a href="bookatable.html">RESERVATIONS</a></li>
+            <li><a href="blog.html">BLOG</a></li>
+            <li><a href="aboutus.html">ABOUT US</a></li>
+            <li><a href="gallery.html">GALLERY</a></li>
+            <li><a href="contactus.html">CONTACT US</a></li>
+        </ul>
+        <button class="btn-reserve" onclick="window.location.href='bookatable.html'">RESERVE A TABLE</button>
+    </div>
+
+    <main>
+        <section class="hero">
+            <video class="hero-video" autoplay loop muted playsinline>
+                <source src="vid/video1.mp4" type="video/mp4">
+            </video>
+            
+            <div class="hero-bg"></div>
+            
+            <div class="hero-text-container">
+                <div class="hero-title">
+                    A World of Flavors<br>
+                    Contemporary Qatar Dining
+                </div>
+                <div style="margin-top: 40px; opacity: 0; animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 0.6s;">
+                    <a href="bookatable.html" class="btn-solid">BOOK A TABLE</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="our-story">
+            <div class="story-container">
+                <div class="story-image reveal">
+                    <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Delicious Dish">
+                </div>
+                <div class="story-content reveal delay-1">
+                    <h2 class="story-subtitle">A GLOBAL CULINARY JOURNEY:</h2>
+                    <h3 class="story-title">ROOTED IN QATAR</h3>
+                    <p class="story-text">
+                        Located in the vibrant heart of Qatar, ALIF LAILA CAFE brings together a rich tapestry of authentic global flavors. From traditional Arabic Fatayer and aromatic Indian Biryanis to beloved Filipino classics and comforting Italian pizzas, our menu is a celebration of diverse culinary heritage served with modern elegance.
+                    </p>
+                    <a href="aboutus.html" class="btn-learn">LEARN MORE</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="parallax-banner reveal">
+            <video class="banner-video" autoplay loop muted playsinline>
+                <source src="vid/video1.mp4" type="video/mp4">
+            </video>
+            
+            <div class="banner-overlay"></div>
+            
+            <div class="banner-content delay-1">
+                <h2 class="banner-title">WHERE TRADITION MEETS TASTE</h2>
+                <div class="banner-buttons">
+                    <a href="menu.html" class="btn-solid">VIEW MENU</a>
+                    <a href="aboutus.html" class="btn-solid">OUR PROMISE</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="experiences-header reveal">
+            <h2>OUR DINERS' EXPERIENCES</h2>
+        </section>
+
+        <section class="split-section reveal delay-1">
+            <div class="split-image">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Diners Experience">
+            </div>
+            <div class="split-content-wrapper">
+                <div class="split-content">
+                    <h3>A SYMPHONY OF AUTHENTIC FLAVORS</h3>
+                    <p>
+                        Stepping into ALIF LAILA CAFE is an immersive experience. We honor the art of cooking by bringing together the very best of Arabic, Indian, Filipino, and Continental cuisines. Whether you are craving the smoky perfection of our Barbeque Grill, a refreshing freshly muddled Mojito, or a comforting bowl of Mac and Cheese, our diverse menu is crafted to delight every craving.
+                    </p>
+                    <a href="bookatable.html" class="btn-learn">RESERVE A TABLE</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="ticker-wrap reveal">
+            <div class="ticker-move">
+                <div class="ticker-content">
+                    <span class="ticker-item">ARABIC FATAYER</span> <span class="ticker-dot">•</span>
+                    <span class="ticker-item">DUM BIRYANI</span> <span class="ticker-dot">•</span>
+                    <span class="ticker-item">OVEN BAKED PIZZA</span> <span class="ticker-dot">•</span>
+                    <span class="ticker-item">PANCIT & SISIG RICE</span> <span class="ticker-dot">•</span>
+                    <span class="ticker-item">GRILL & BARBECUE</span> <span class="ticker-dot">•</span>
+                    <span class="ticker-item">FRESH JUICES & MOJITOS</span> <span class="ticker-dot">•</span>
+                    <span class="ticker-item">SIZZLING BURGERS</span> <span class="ticker-dot">•</span>
+                    <span class="ticker-item">SIGNATURE DESSERTS</span> <span class="ticker-dot">•</span>
+                </div>
+                <div class="ticker-content">
+                    <span class="ticker-item">ARABIC FATAYER</span> <span class="ticker-dot">•</span>
+                    <span class="ticker-item">DUM BIRYANI</span> <span class="ticker-dot">•</span>
+                    <span class="ticker-item">OVEN BAKED PIZZA</span> <span class="ticker-dot">•</span>
+                    <span class="ticker-item">PANCIT & SISIG RICE</span> <span class="ticker-dot">•</span>
+                    <span class="ticker-item">GRILL & BARBECUE</span> <span class="ticker-dot">•</span>
+                    <span class="ticker-item">FRESH JUICES & MOJITOS</span> <span class="ticker-dot">•</span>
+                    <span class="ticker-item">SIZZLING BURGERS</span> <span class="ticker-dot">•</span>
+                    <span class="ticker-item">SIGNATURE DESSERTS</span> <span class="ticker-dot">•</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="gallery-section reveal">
+            <div class="gallery-header">
+                <h3>@ALIFLAILACAFEQATAR</h3>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Coffee preparation">
+                    <div class="gallery-play-icon"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cafe ambiance">
+                    <div class="gallery-play-icon"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Delicious meal">
+                    <div class="gallery-play-icon"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1536939459926-301728717817?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Signature Drink">
+                    <div class="gallery-play-icon"><i class="fas fa-play"></i></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col brand reveal">
+                <a href="#" class="footer-logo">
+                    Alif Laila Cafe
+                    <span>QATAR</span>
+                </a>
+                <p>Offering a vibrant mix of authentic Arabic, Indian, Filipino, and Continental dishes, ALIF LAILA CAFE is the perfect destination for food lovers. A seamless blend of global flavors and warm Middle Eastern hospitality.</p>
+            </div>
+
+            <div class="footer-col reveal delay-1">
+                <h4>CONTACT US</h4>
+                <p>LUXURY AVENUE, DOHA</p>
+                <p>WHATSAPP: +971 777723547</p>
+                <p>EMAIL: CONTACT@ALIFLAILACAFE.COM</p>
+                <p style="margin-top: 15px; text-transform: uppercase;">MON-THU 9AM to 12AM | FRI-SUN 9AM to 1AM</p>
+            </div>
+
+            <div class="footer-col reveal delay-2">
+                <h4>SITEMAP</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="menu.html">MENU</a></li>
+                    <li><a href="bookatable.html">RESERVATIONS</a></li>
+                    <li><a href="blog.html">BLOG</a></li>
+                    <li><a href="#">PRIVACY POLICY</a></li>
+                    <li><a href="#">TERMS</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col reveal delay-3">
+                <h4>FOLLOW US</h4>
+                <div class="footer-socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+                <h4 style="margin-top: 30px; margin-bottom: 5px;">SIGN UP FOR NEWSLETTER</h4>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-btn"><i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2024 ALIF LAILA CAFE & RESTAURANT. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <div class="whatsapp-widget">
+    <a href="https://wa.me/97477723547" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Updated Intersection Observer for immediate load without white space
+            const observerOptions = {
+                root: null,
+                rootMargin: '50px', // Triggers slightly before it enters the viewport
+                threshold: 0.02     // Instantly triggers when practically any piece is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Mobile Menu Logic
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const body = document.body;
+
+            // Toggle menu open/close
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                
+                // Prevent background scrolling when menu is open
+                if(mobileMenu.classList.contains('active')) {
+                    body.style.overflow = 'hidden';
+                } else {
+                    body.style.overflow = '';
+                }
+            });
+
+            // Close mobile menu when a link is clicked
+            document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    body.style.overflow = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

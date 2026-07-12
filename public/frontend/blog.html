@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Our Journal - Alif Laila Cafe & Restaurant | Qatar</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================
+           CSS Reset & General (Inherited)
+           ========================================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #faf9f6; /* Soft off-white for blog background */
+            color: #333;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Prevent body scroll when mobile menu is open */
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* --- Animations (Inherited) --- */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* ==========================================
+           Top Bar & Navigation (Inherited)
+           ========================================== */
+        .top-bar {
+            background-color: #0a0a0a; color: #eeeeee; font-size: 10px;
+            letter-spacing: 1.5px; padding: 10px 30px; display: flex;
+            justify-content: space-between; align-items: center; text-transform: uppercase;
+            position: relative; z-index: 20;
+        }
+        .top-bar-left { display: flex; align-items: center; gap: 25px; flex-wrap: wrap; }
+        .top-bar-left i { margin-right: 6px; color: #d4af37; }
+        
+        .navbar-wrapper {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); transition: all 0.3s ease;
+        }
+        .navbar {
+            padding: 15px 40px; display: flex; justify-content: space-between;
+            align-items: center; max-width: 1600px; margin: 0 auto;
+        }
+        .nav-group { display: flex; align-items: center; flex: 1; }
+        .nav-group.left { justify-content: flex-start; }
+        .nav-group.right { justify-content: flex-end; gap: 30px; }
+        .nav-links { list-style: none; display: flex; gap: 25px; font-size: 11px; letter-spacing: 2px; font-weight: 500; }
+        .nav-links li a { position: relative; padding-bottom: 5px; transition: color 0.3s ease; }
+        .nav-links li a:hover { color: #d4af37; }
+        .nav-links li a::after {
+            content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0;
+            background-color: #d4af37; transition: width 0.3s ease;
+        }
+        .nav-links li a:hover::after, .nav-links li a.active::after { width: 100%; }
+        
+        .brand-logo { 
+            text-align: center; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; padding: 0 10px; 
+            flex: 0 0 auto; animation: fadeInUp 0.8s ease-out; 
+            position: relative; z-index: 101; /* Stay above mobile menu */
+        }
+        .brand-logo h1 { font-weight: 400; font-size: 19px; letter-spacing: 3px; text-transform: uppercase; color: #111; }
+        .brand-logo span { font-size: 9px; letter-spacing: 8px; margin-top: 6px; color: #777; }
+        
+        .btn-reserve {
+            border: 1px solid #111; background: transparent; color: #111;
+            padding: 12px 28px; font-size: 11px; letter-spacing: 1.5px;
+            text-transform: uppercase; cursor: pointer; position: relative;
+            overflow: hidden; transition: color 0.4s ease; font-weight: 600; white-space: nowrap;
+        }
+        .btn-reserve::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%;
+            height: 100%; background: #111; transition: left 0.4s ease; z-index: -1;
+        }
+        .btn-reserve:hover::before { left: 0; }
+        .btn-reserve:hover { color: #fff; border-color: #111; }
+
+        /* --- Mobile Navigation & Hamburger --- */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 101; /* Stay above mobile menu */
+            padding: 10px;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 25px;
+            height: 2px;
+            margin: 5px auto;
+            background-color: #111;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .hamburger.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.active .bar:nth-child(2) { opacity: 0; }
+        .hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+            background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(15px);
+            z-index: 100; display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            transition: right 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .mobile-menu.active { right: 0; }
+
+        .mobile-nav-links { list-style: none; text-align: center; margin-bottom: 40px; width: 100%; }
+        .mobile-nav-links li { margin: 25px 0; opacity: 0; transform: translateY(30px); transition: all 0.5s ease; }
+        .mobile-nav-links a { font-size: 16px; letter-spacing: 4px; font-weight: 500; color: #111; text-transform: uppercase; position: relative; padding-bottom: 5px; }
+        .mobile-nav-links a.active { color: #d4af37; }
+
+        /* Staggered Animation for Mobile Links */
+        .mobile-menu.active .mobile-nav-links li { opacity: 1; transform: translateY(0); }
+        .mobile-menu.active .mobile-nav-links li:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(2) { transition-delay: 0.15s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(3) { transition-delay: 0.2s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(4) { transition-delay: 0.25s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(5) { transition-delay: 0.3s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(6) { transition-delay: 0.35s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(7) { transition-delay: 0.4s; }
+
+        .mobile-menu .btn-reserve {
+            opacity: 0; transform: translateY(20px); transition: all 0.5s ease 0.5s;
+            font-size: 13px; padding: 15px 40px;
+        }
+        .mobile-menu.active .btn-reserve { opacity: 1; transform: translateY(0); }
+
+        /* ==========================================
+           Blog Specific Styles (New Modern UI)
+           ========================================== */
+        
+        /* Reading Progress Bar */
+        .progress-container {
+            position: absolute; bottom: -1px; left: 0; width: 100%;
+            height: 2px; background: transparent; z-index: 101;
+        }
+        .progress-bar { height: 2px; background: #d4af37; width: 0%; }
+
+        /* Blog Hero Parallax */
+        .blog-hero {
+            position: relative;
+            height: 55vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+        }
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+        }
+        .blog-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+        }
+        .blog-hero-subtitle {
+            font-family: 'Great Vibes', cursive;
+            font-size: 45px;
+            color: #d4af37;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeInUp 1s forwards 0.2s;
+        }
+        .blog-hero-title {
+            font-size: 42px;
+            font-weight: 500;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            text-shadow: 2px 4px 15px rgba(0,0,0,0.5);
+            opacity: 0;
+            animation: fadeInUp 1s forwards 0.4s;
+        }
+
+        /* Blog Filters */
+        .blog-filters-section {
+            padding: 60px 20px 20px;
+            text-align: center;
+            background-color: #faf9f6;
+        }
+        .filter-btn {
+            background: transparent;
+            border: none;
+            color: #777;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 15px 15px;
+            padding-bottom: 5px;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .filter-btn::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 1px;
+            bottom: 0; left: 0;
+            background-color: #111;
+            transition: width 0.3s ease;
+        }
+        .filter-btn:hover, .filter-btn.active { color: #111; }
+        .filter-btn:hover::after, .filter-btn.active::after { width: 100%; }
+
+        /* Blog Grid Layout */
+        .blog-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 40px 100px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 40px;
+        }
+        
+        .blog-card {
+            background: #fff;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+        
+        .blog-img-wrapper {
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+            position: relative;
+        }
+        .blog-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        .blog-card:hover .blog-img-wrapper img {
+            transform: scale(1.08);
+        }
+        .blog-category-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #050505;
+            color: #fff;
+            padding: 6px 12px;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .blog-content { padding: 35px; flex-grow: 1; display: flex; flex-direction: column; }
+        .blog-meta {
+            display: flex; gap: 15px; font-size: 10px;
+            color: #888; font-weight: 500; letter-spacing: 1.5px;
+            text-transform: uppercase; margin-bottom: 15px;
+        }
+        .blog-meta i { color: #d4af37; margin-right: 5px; }
+        
+        .blog-title {
+            font-size: 22px; font-weight: 500;
+            color: #111; line-height: 1.4; margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+        .blog-card:hover .blog-title { color: #d4af37; }
+        
+        .blog-excerpt { font-size: 13px; color: #555; line-height: 1.8; margin-bottom: 25px; flex-grow: 1; }
+        
+        .btn-read-more {
+            align-self: flex-start;
+            font-size: 11px; font-weight: 600; color: #111;
+            letter-spacing: 2px; text-transform: uppercase;
+            border-bottom: 1px solid #111; padding-bottom: 3px;
+            transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-read-more i { transition: transform 0.3s ease; font-size: 10px; }
+        .btn-read-more:hover { color: #d4af37; border-color: #d4af37; }
+        .btn-read-more:hover i { transform: translateX(5px); }
+
+        /* Load More Button */
+        .load-more-wrapper { text-align: center; margin-top: 20px; margin-bottom: 80px; width: 100%; }
+        .btn-load {
+            background-color: transparent; border: 1px solid #111; color: #111;
+            padding: 16px 45px; font-size: 11px; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease;
+        }
+        .btn-load:hover { background-color: #111; color: #fff; }
+
+        /* ==========================================
+           Footer & Widgets (Inherited)
+           ========================================== */
+        .site-footer { background-color: #050505; color: #aaaaaa; padding: 80px 40px 30px; font-size: 11px; line-height: 1.8; border-top: 1px solid #1a1a1a; }
+        .footer-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+        .footer-col { flex: 1; min-width: 220px; }
+        .footer-col.brand { flex: 1.5; }
+        .footer-col h4 { color: #ffffff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; font-weight: 600; }
+        .footer-logo { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 300; letter-spacing: 4px; color: #ffffff; margin-bottom: 20px; display: inline-block; text-transform: uppercase; }
+        .footer-logo span { display: block; font-size: 8px; letter-spacing: 6px; margin-top: 5px; color: #777; text-align: center; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { transition: color 0.3s ease; text-transform: uppercase; font-size: 10px; letter-spacing: 1px; }
+        .footer-links a:hover { color: #d4af37; }
+        .footer-socials { display: flex; gap: 15px; margin-bottom: 30px; font-size: 16px; color: #ffffff; }
+        .footer-socials a:hover { color: #d4af37; }
+        .newsletter-form { display: flex; margin-top: 15px; border-bottom: 1px solid #444; padding-bottom: 5px; }
+        .newsletter-input { flex: 1; padding: 8px 0; background: transparent; border: none; color: #ffffff; font-size: 11px; outline: none; font-family: 'Montserrat', sans-serif; }
+        .newsletter-input::placeholder { color: #777; }
+        .newsletter-btn { background: transparent; color: #ffffff; border: none; font-size: 12px; cursor: pointer; padding: 0 10px; transition: color 0.3s ease; }
+        .newsletter-btn:hover { color: #d4af37; }
+        .footer-bottom { border-top: 1px solid #1a1a1a; max-width: 1400px; margin: 60px auto 0; padding-top: 25px; text-align: center; font-size: 9px; letter-spacing: 1.5px; color: #555; text-transform: uppercase; }
+
+        .whatsapp-widget {
+            position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white;
+            width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            font-size: 30px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); cursor: pointer; z-index: 90;
+            transition: transform 0.3s ease; animation: pulseGlow 2s infinite;
+        }
+        .whatsapp-widget:hover { transform: translateY(-5px) scale(1.05); }
+
+        .language-selector {
+            position: fixed; bottom: 30px; left: 30px; background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px); padding: 10px 18px; display: flex; align-items: center; gap: 10px;
+            font-size: 11px; font-weight: 600; border-radius: 30px; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); z-index: 90; transition: all 0.3s ease; color: #333;
+        }
+        .language-selector:hover { background: #ffffff; transform: translateY(-3px); }
+        .language-selector img { width: 18px; border-radius: 2px; }
+
+        /* ==========================================
+           Responsive Adjustments
+           ========================================== */
+        @media (max-width: 1200px) {
+            .nav-group { display: none; } /* Hide desktop links */
+            .navbar { 
+                justify-content: center; 
+                padding: 15px 25px; 
+                position: relative; /* Setup context for hamburger */
+            }
+            .hamburger { 
+                display: block; 
+                position: absolute; 
+                right: 25px; 
+                top: 50%; 
+                transform: translateY(-50%); 
+            }
+        }
+        @media (max-width: 900px) {
+            .blog-container { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); padding: 40px 20px 80px; }
+            .blog-hero { background-attachment: scroll; } /* Better performance on smaller screens */
+        }
+        @media (max-width: 768px) {
+            .top-bar { flex-direction: column; gap: 8px; text-align: center; padding: 10px 15px; }
+            .top-bar-left { justify-content: center; gap: 10px; }
+            
+            .navbar { padding: 12px 20px; }
+            .hamburger { right: 20px; }
+            .brand-logo h1 { font-size: 16px; letter-spacing: 2px; }
+            .brand-logo span { font-size: 8px; letter-spacing: 5px; }
+            
+            .mobile-nav-links a { font-size: 14px; letter-spacing: 3px; }
+            
+            .blog-hero { height: 40vh; min-height: 300px; }
+            .blog-hero-title { font-size: 28px; letter-spacing: 4px; }
+            .blog-hero-subtitle { font-size: 35px; }
+            
+            .site-footer { padding: 60px 20px 30px; text-align: center; }
+            .footer-col { min-width: 100%; align-items: center; display: flex; flex-direction: column; }
+            .newsletter-form { width: 100%; max-width: 300px; margin: 15px auto 0; }
+            
+            .whatsapp-widget { width: 48px; height: 48px; font-size: 26px; bottom: 20px; right: 20px; }
+            .language-selector { padding: 8px 14px; font-size: 10px; bottom: 25px; left: 20px; }
+        }
+        @media (max-width: 480px) {
+            .blog-container { grid-template-columns: 1fr; }
+            .blog-img-wrapper { height: 220px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <span><i class="fas fa-phone-alt"></i> +971 777723547</span>
+                <span><i class="fas fa-asterisk"></i> LUXURY AVENUE, DOHA, QATAR</span>
+            </div>
+            <div class="top-bar-right">
+                <span>MON - THU: 9AM TO 12AM | FRI - SUN: 9AM TO 1AM</span>
+            </div>
+        </div>
+
+        <div class="navbar-wrapper">
+            <nav class="navbar">
+                <!-- Desktop Left Links -->
+                <div class="nav-group left">
+                    <ul class="nav-links">
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="menu.html">MENU</a></li>
+                        <li><a href="bookatable.html">RESERVATIONS</a></li>
+                        <li><a href="blog.html" class="active">BLOG</a></li>
+                    </ul>
+                </div>
+
+                <!-- Brand Logo (Centered perfectly on mobile) -->
+                <div class="brand-logo">
+                    <h1>Alif Laila Cafe & <br>Restaurant</h1>
+                    <span>QATAR</span>
+                </div>
+
+                <!-- Desktop Right Links -->
+                <div class="nav-group right">
+                    <ul class="nav-links">
+                        <li><a href="aboutus.html">ABOUT US</a></li>
+                        <li><a href="gallery.html">GALLERY</a></li>
+                        <li><a href="contactus.html">CONTACT US</a></li>
+                    </ul>
+                    <button class="btn-reserve" onclick="window.location.href='bookatable.html'">RESERVE A TABLE</button>
+                </div>
+
+                <!-- Animated Hamburger Icon (Mobile Only) -->
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="menu.html">MENU</a></li>
+                <li><a href="bookatable.html">RESERVATIONS</a></li>
+                <li><a href="blog.html" class="active">BLOG</a></li>
+                <li><a href="aboutus.html">ABOUT US</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
+                <li><a href="contactus.html">CONTACT US</a></li>
+            </ul>
+            <button class="btn-reserve" onclick="window.location.href='bookatable.html'">RESERVE A TABLE</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Blog Hero Section -->
+        <section class="blog-hero">
+            <div class="blog-hero-content">
+                <div class="blog-hero-subtitle">Our Culinary Journal</div>
+                <h1 class="blog-hero-title">Stories & Flavors</h1>
+            </div>
+        </section>
+
+        <!-- Blog Filters -->
+        <section class="blog-filters-section reveal">
+            <button class="filter-btn active" data-filter="all">ALL STORIES</button>
+            <button class="filter-btn" data-filter="recipes">RECIPES & CHEFS</button>
+            <button class="filter-btn" data-filter="events">EVENTS</button>
+            <button class="filter-btn" data-filter="culture">CULTURE</button>
+        </section>
+
+        <!-- Blog Grid Layout -->
+        <section class="blog-container">
+            
+            <!-- Article 1 -->
+            <article class="blog-card reveal" data-category="recipes">
+                <div class="blog-img-wrapper">
+                    <span class="blog-category-badge">Recipes & Chefs</span>
+                    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Biryani Preparation">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> OCT 12, 2024</span>
+                        <span><i class="far fa-clock"></i> 4 MIN READ</span>
+                    </div>
+                    <h2 class="blog-title">The Secret Behind Our Signature Dum Biryani</h2>
+                    <p class="blog-excerpt">Discover the slow-cooking techniques and the perfect blend of exotic spices that make our traditional Dum Biryani a culinary masterpiece cherished by our diners.</p>
+                    <a href="#" class="btn-read-more">READ ARTICLE <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="blog-card reveal delay-1" data-category="culture">
+                <div class="blog-img-wrapper">
+                    <span class="blog-category-badge">Culture</span>
+                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Arabic Coffee">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> OCT 05, 2024</span>
+                        <span><i class="far fa-clock"></i> 3 MIN READ</span>
+                    </div>
+                    <h2 class="blog-title">The Art of Pouring: Traditional Arabic Coffee</h2>
+                    <p class="blog-excerpt">More than just a beverage, Arabic coffee represents warmth and hospitality. Dive into the history and ritual behind every cup we serve at Alif Laila.</p>
+                    <a href="#" class="btn-read-more">READ ARTICLE <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="blog-card reveal delay-2" data-category="events">
+                <div class="blog-img-wrapper">
+                    <span class="blog-category-badge">Events</span>
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Grill Night">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> SEP 28, 2024</span>
+                        <span><i class="far fa-clock"></i> 2 MIN READ</span>
+                    </div>
+                    <h2 class="blog-title">Upcoming Weekend Sizzling BBQ Nights</h2>
+                    <p class="blog-excerpt">Join us this weekend for an unforgettable evening under the stars featuring live grill stations, premium cuts, and an atmosphere perfectly crafted for making memories.</p>
+                    <a href="#" class="btn-read-more">READ ARTICLE <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- Article 4 -->
+            <article class="blog-card reveal" data-category="recipes">
+                <div class="blog-img-wrapper">
+                    <span class="blog-category-badge">Recipes & Chefs</span>
+                    <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wood fired pizza">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> SEP 15, 2024</span>
+                        <span><i class="far fa-clock"></i> 5 MIN READ</span>
+                    </div>
+                    <h2 class="blog-title">From Naples to Doha: The Perfect Pizza Crust</h2>
+                    <p class="blog-excerpt">Our head chef breaks down the science of hydration, the importance of resting the dough, and why our wood-fired oven creates the ultimate Neapolitan slice.</p>
+                    <a href="#" class="btn-read-more">READ ARTICLE <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- Article 5 -->
+            <article class="blog-card reveal delay-1" data-category="culture">
+                <div class="blog-img-wrapper">
+                    <span class="blog-category-badge">Culture</span>
+                    <img src="https://images.unsplash.com/photo-1536939459926-301728717817?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mojito Drink">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> SEP 02, 2024</span>
+                        <span><i class="far fa-clock"></i> 3 MIN READ</span>
+                    </div>
+                    <h2 class="blog-title">Mixology 101: Creating the Ultimate Mocktails</h2>
+                    <p class="blog-excerpt">Fresh herbs, vibrant citrus, and the perfect muddle. Learn how our mixologists balance flavors to create refreshing beverages for the Qatari heat.</p>
+                    <a href="#" class="btn-read-more">READ ARTICLE <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- Article 6 -->
+            <article class="blog-card reveal delay-2" data-category="recipes">
+                <div class="blog-img-wrapper">
+                    <span class="blog-category-badge">Recipes & Chefs</span>
+                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Filipino Cuisine">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> AUG 20, 2024</span>
+                        <span><i class="far fa-clock"></i> 4 MIN READ</span>
+                    </div>
+                    <h2 class="blog-title">Embracing the Flavors of Manila: Pancit & Sisig</h2>
+                    <p class="blog-excerpt">A deep dive into our authentic Filipino menu. We explore the vibrant balance of sour, salty, and savory that makes dishes like Sisig universally loved.</p>
+                    <a href="#" class="btn-read-more">READ ARTICLE <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Load More Section -->
+        <div class="load-more-wrapper reveal">
+            <button class="btn-load">LOAD MORE STORIES</button>
+        </div>
+
+    </main>
+
+    <!-- Modern Dark Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col brand reveal">
+                <a href="index.html" class="footer-logo">
+                    Alif Laila Cafe
+                    <span>QATAR</span>
+                </a>
+                <p>Offering a vibrant mix of authentic Arabic, Indian, Filipino, and Continental dishes, ALIF LAILA CAFE is the perfect destination for food lovers. A seamless blend of global flavors and warm Middle Eastern hospitality.</p>
+            </div>
+
+            <div class="footer-col reveal delay-1">
+                <h4>CONTACT US</h4>
+                <p>LUXURY AVENUE, DOHA</p>
+                <p>WHATSAPP: +971 777723547</p>
+                <p>EMAIL: CONTACT@ALIFLAILACAFE.COM</p>
+                <p style="margin-top: 15px; text-transform: uppercase;">MON-THU 9AM to 12AM | FRI-SUN 9AM to 1AM</p>
+            </div>
+
+            <div class="footer-col reveal delay-2">
+                <h4>SITEMAP</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="menu.html">MENU</a></li>
+                    <li><a href="reserve.html">RESERVATIONS</a></li>
+                    <li><a href="blog.html">BLOG</a></li>
+                    <li><a href="#">PRIVACY POLICY</a></li>
+                    <li><a href="#">TERMS</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col reveal delay-3">
+                <h4>FOLLOW US</h4>
+                <div class="footer-socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+                <h4 style="margin-top: 30px; margin-bottom: 5px;">SIGN UP FOR NEWSLETTER</h4>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-btn"><i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2024 ALIF LAILA CAFE & RESTAURANT. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <!-- Floating UI Widgets -->
+    <div class="whatsapp-widget">
+    <a href="https://wa.me/97477723547" target="_blank" rel="noopener noreferrer" style="color: white;">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    </div>
+
+    <!-- JavaScript for Animations, Menu, and Filtering -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /* --- Mobile Navigation Logic --- */
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const body = document.body;
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                
+                // Toggle body scroll
+                if(mobileMenu.classList.contains('active')) {
+                    body.classList.add('no-scroll');
+                } else {
+                    body.classList.remove('no-scroll');
+                }
+            });
+
+            /* --- Intersection Observer for fade-up animations --- */
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+
+            /* --- Reading Progress Bar JS --- */
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById("progressBar").style.width = scrolled + "%";
+            });
+
+            /* --- Blog Post Filtering Logic --- */
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    blogCards.forEach(card => {
+                        card.style.transition = "all 0.4s ease";
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'flex';
+                            setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'scale(1)'; }, 50);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'scale(0.9)';
+                            setTimeout(() => { card.style.display = 'none'; }, 400);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
