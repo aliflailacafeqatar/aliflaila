@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Our Journal - Alif Laila Cafe & Restaurant | Qatar</title>
     
+    <!-- External Fonts and Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
     @include('home.css')
 
     <!-- Link to your separate CSS file -->
@@ -13,6 +17,20 @@
 <body>
 
     @include('home.header')
+
+    <!-- Missing Mobile Menu Overlay Added Here -->
+    <div class="mobile-menu">
+        <ul class="mobile-nav-links">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">MENU</a></li>
+            <li><a href="#">RESERVATIONS</a></li>
+            <li><a href="#" class="active">BLOG</a></li>
+            <li><a href="#">ABOUT US</a></li>
+            <li><a href="#">GALLERY</a></li>
+            <li><a href="#">CONTACT US</a></li>
+        </ul>
+        <button class="btn-reserve">RESERVE A TABLE</button>
+    </div>
 
     <main>
         <!-- Blog Hero Section -->
@@ -33,7 +51,6 @@
 
         <!-- Blog Grid Layout -->
         <section class="blog-container">
-            
             <!-- Article 1 -->
             <article class="blog-card reveal" data-category="recipes">
                 <div class="blog-img-wrapper">
@@ -150,9 +167,9 @@
 
     <!-- Floating UI Widgets -->
     <div class="whatsapp-widget">
-    <a href="https://wa.me/97477723547" target="_blank" rel="noopener noreferrer" style="color: white;">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+        <a href="https://wa.me/97477723547" target="_blank" rel="noopener noreferrer" style="color: white;">
+            <i class="fab fa-whatsapp"></i>
+        </a>
     </div>
 
     <!-- Link to your separate JS file -->

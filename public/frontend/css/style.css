@@ -78,6 +78,7 @@ a {
 
 /* --- Glassmorphism Navigation --- */
 .navbar-wrapper {
+    position: -webkit-sticky; /* Added for iOS/Safari support */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -152,6 +153,18 @@ a {
     flex: 0 0 auto;
     animation: fadeInUp 0.8s ease-out;
     z-index: 1002;
+}
+
+.brand-logo a {
+    display: inline-block;
+}
+
+/* Added specific constraints for the image logo to reduce size */
+.brand-logo img {
+    max-width: 230px; /* Reduced size for desktop */
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 .brand-logo h1 {
@@ -935,6 +948,12 @@ a {
 
     .navbar { padding: 12px 20px; }
     .hamburger { right: 20px; }
+    
+    /* Reduced image logo size on mobile devices */
+    .brand-logo img {
+        max-width: 150px; 
+    }
+    
     .brand-logo h1 { font-size: 16px; letter-spacing: 2px; }
     .brand-logo span { font-size: 8px; letter-spacing: 5px; }
 

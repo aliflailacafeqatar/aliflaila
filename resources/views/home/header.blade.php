@@ -22,8 +22,9 @@
             </div>
 
             <div class="brand-logo">
-                <h1>Alif Laila Cafe & <br>Restaurant</h1>
-                <span>QATAR</span>
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('frontend/img/logo.png') }}" alt="Alif Laila Cafe & Restaurant Logo">
+                </a>
             </div>
 
             <div class="nav-group right">

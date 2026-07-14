@@ -93,8 +93,9 @@ a {
     color: #d4af37;
 }
 
-/* --- Glassmorphism Navigation --- */
+/* --- Glassmorphism Navigation (Sticky) --- */
 .navbar-wrapper {
+    position: -webkit-sticky; /* For Safari compatibility */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -170,6 +171,16 @@ a {
     z-index: 101; /* Stay above mobile menu */
 }
 
+/* NEW: Logo Image Styling */
+.brand-logo img {
+    max-width: 180px; /* Adjusted desktop size as requested */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: max-width 0.3s ease;
+}
+
+/* Legacy text logo classes (kept just in case you ever switch back) */
 .brand-logo h1 {
     font-weight: 400;
     font-size: 19px;
@@ -840,6 +851,11 @@ a {
     .navbar { padding: 12px 20px; }
     .hamburger { right: 20px; } /* Update hamburger right position mapping with padding */
     
+    /* NEW: Adjust logo size for mobile specifically */
+    .brand-logo img {
+        max-width: 125px; /* Reduced for mobile */
+    }
+
     .brand-logo h1 { font-size: 16px; letter-spacing: 2px; }
     .brand-logo span { font-size: 8px; letter-spacing: 5px; }
     

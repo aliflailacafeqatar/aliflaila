@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\MenuCategory;
+use App\Models\FoodItem;
 
 // Home Page
 Route::get('/', function () {
@@ -9,12 +11,21 @@ Route::get('/', function () {
 
 // Menu Page
 Route::get('/menu', function () {
-    return view('home.menu');
+    // Fetch active categories and their active food items
+    $categories = MenuCategory::with(['foodItems' => function($query) {
+        $query->where('is_active', true);
+    }])->where('is_active', true)->get();
+
+    // Pass the $categories variable to your home.menu view
+    return view('home.menu', compact('categories'));
 });
 
 // Reservation Page
 Route::get('/bookatable', function () {
-    return view('home.bookatable');
+    // Fetch active food items for the pre-order slider
+    $foodItems = FoodItem::where('is_active', true)->get();
+    
+    return view('home.bookatable', compact('foodItems'));
 });
 
 // Blog Page

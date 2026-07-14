@@ -105,7 +105,8 @@
                 <div class="input-group">
                     <label>Date</label>
                     <div class="input-wrapper date-wrapper">
-                        <input type="date" id="date-input" min="2026-07-11" max="2026-12-31" value="2026-07-11">
+                        <!-- Dynamically sets today as the minimum date and default value -->
+                        <input type="date" id="date-input" min="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}">
                     </div>
                 </div>
 
@@ -132,18 +133,10 @@
                 <div class="slider-wrapper">
                     <button class="slider-arrow left-arrow"><i class="fas fa-chevron-left"></i></button>
                     <div class="slider-track">
-                        <button type="button" class="time-btn food-btn">Arabic Mezze</button>
-                        <button type="button" class="time-btn food-btn">Chicken Shawarma</button>
-                        <button type="button" class="time-btn food-btn">Lamb Chops</button>
-                        <button type="button" class="time-btn food-btn">Mutton Biryani</button>
-                        <button type="button" class="time-btn food-btn">Pancit Canton</button>
-                        <button type="button" class="time-btn food-btn">Grilled Salmon</button>
-                        <button type="button" class="time-btn food-btn">Hummus</button>
-                        <button type="button" class="time-btn food-btn">Falafel Wrap</button>
-                        <button type="button" class="time-btn food-btn">Baklava</button>
-                        <button type="button" class="time-btn food-btn">Umm Ali</button>
-                        <button type="button" class="time-btn food-btn">Mint Lemonade</button>
-                        <button type="button" class="time-btn food-btn">Turkish Coffee</button>
+                        <!-- Dynamic Food Items Loop -->
+                        @foreach($foodItems as $item)
+                            <button type="button" class="time-btn food-btn" data-id="{{ $item->id }}">{{ $item->name }}</button>
+                        @endforeach
                     </div>
                     <button class="slider-arrow right-arrow"><i class="fas fa-chevron-right"></i></button>
                 </div>
@@ -199,7 +192,7 @@
             <div class="personal-details-form">
                 <h3 class="form-section-title">Reservation details</h3>
                 <div class="res-summary">
-                    <p id="summary-datetime">Saturday, July 11</p>
+                    <p id="summary-datetime">{{ date('l, F j') }}</p>
                     <p id="summary-guests">2 people</p>
                 </div>
 
@@ -255,7 +248,50 @@
         </div>
     </main>
 
-    @include('home.footer')
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col brand">
+                <a href="{{ url('/') }}" class="footer-logo">
+                    Alif Laila Cafe
+                    <span>QATAR</span>
+                </a>
+                <p>Offering a vibrant mix of authentic Arabic, Indian, Filipino, and Continental dishes, ALIF LAILA CAFE is the perfect destination for food lovers. A seamless blend of global flavors and warm Middle Eastern hospitality.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>CONTACT US</h4>
+                <p>LUXURY AVENUE, DOHA</p>
+                <p>WHATSAPP: +971 777723547</p>
+                <p>EMAIL: CONTACT@ALIFLAILACAFE.COM</p>
+                <p style="margin-top: 15px; text-transform: uppercase;">MON-THU 9AM to 12AM | FRI-SUN 9AM to 1AM</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>SITEMAP</h4>
+                <ul class="footer-links">
+                    <li><a href="{{ url('/') }}">HOME</a></li>
+                    <li><a href="{{ url('/menu') }}">MENU</a></li>
+                    <li><a href="{{ url('/bookatable') }}">RESERVATIONS</a></li>
+                    <li><a href="{{ url('/blog') }}">BLOG</a></li>
+                    <li><a href="#">PRIVACY POLICY</a></li>
+                    <li><a href="#">TERMS</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>FOLLOW US</h4>
+                <div class="footer-socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2024 ALIF LAILA CAFE & RESTAURANT. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
 
     <!-- Link to your separate JS file -->
     <script src="{{ asset('frontend/js/bookatable.js') }}"></script>

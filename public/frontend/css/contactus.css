@@ -23,6 +23,14 @@ a {
     color: inherit;
 }
 
+/* --- Sticky Header --- */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
 /* --- Animations --- */
 @keyframes fadeInUp {
     0% { opacity: 0; transform: translateY(40px); }
@@ -80,9 +88,6 @@ a {
 
 /* --- Glassmorphism Navigation --- */
 .navbar-wrapper {
-    position: sticky;
-    top: 0;
-    z-index: 100;
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -143,11 +148,10 @@ a {
     width: 100%;
 }
 
-/* Brand Logo */
+/* --- Brand Logo --- */
 .brand-logo {
     text-align: center;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 0 10px;
@@ -156,19 +160,17 @@ a {
     z-index: 101; /* Stay above mobile menu */
 }
 
-.brand-logo h1 {
-    font-weight: 400;
-    font-size: 19px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #111;
+.brand-logo a {
+    display: block;
 }
 
-.brand-logo span {
-    font-size: 9px;
-    letter-spacing: 8px;
-    margin-top: 6px;
-    color: #777;
+.brand-logo img {
+    width: 100%;
+    max-width: 150px; /* Reduced desktop size */
+    height: auto;
+    display: block;
+    object-fit: contain;
+    transition: max-width 0.3s ease;
 }
 
 /* Modern Button */
@@ -762,8 +764,8 @@ a {
 
     .navbar { padding: 12px 20px; min-height: 65px; }
     .hamburger { right: 20px; }
-    .brand-logo h1 { font-size: 16px; letter-spacing: 2px; }
-    .brand-logo span { font-size: 8px; letter-spacing: 5px; margin-top: 4px; }
+    
+    .brand-logo img { max-width: 120px; } /* Reduced mobile size */
     
     .mobile-nav-links a { font-size: 14px; letter-spacing: 3px; }
 
@@ -783,8 +785,7 @@ a {
 }
 
 @media (max-width: 480px) {
-    .brand-logo h1 { font-size: 14px; letter-spacing: 1.5px; }
-    .brand-logo span { font-size: 7px; letter-spacing: 4px; }
+    .brand-logo img { max-width: 100px; } /* Even smaller for very small devices */
     
     .contact-buttons-row { flex-direction: column; width: 100%; }
     .btn-solid-dark { width: 100%; }

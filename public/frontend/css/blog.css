@@ -4,9 +4,10 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #faf9f6; /* Soft off-white for blog background */
+    background-color: #faf9f6; 
     color: #333;
-    overflow-x: hidden;
+    /* Allows position: sticky to work properly on both desktop and mobile */
+    overflow-x: clip; 
     -webkit-font-smoothing: antialiased;
 }
 
@@ -53,9 +54,13 @@ a { text-decoration: none; color: inherit; }
 .top-bar-left { display: flex; align-items: center; gap: 25px; flex-wrap: wrap; }
 .top-bar-left i { margin-right: 6px; color: #d4af37; }
 
+/* Sticky Header styling for Desktop & Mobile */
 .navbar-wrapper {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(255, 255, 255, 0.85);
+    position: -webkit-sticky !important; /* Added for iOS Safari support */
+    position: sticky !important; 
+    top: 0 !important; 
+    z-index: 100 !important; 
+    background: rgba(255, 255, 255, 0.95); 
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.3);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); transition: all 0.3s ease;
@@ -76,14 +81,51 @@ a { text-decoration: none; color: inherit; }
 }
 .nav-links li a:hover::after, .nav-links li a.active::after { width: 100%; }
 
-.brand-logo { 
-    text-align: center; display: flex; flex-direction: column; 
-    align-items: center; justify-content: center; padding: 0 10px; 
-    flex: 0 0 auto; animation: fadeInUp 0.8s ease-out; 
-    position: relative; z-index: 101; /* Stay above mobile menu */
+/* Brand Logo - Forced constraints to prevent external CSS from breaking it */
+.brand-logo {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 101; 
+    text-decoration: none !important;
 }
-.brand-logo h1 { font-weight: 400; font-size: 19px; letter-spacing: 3px; text-transform: uppercase; color: #111; }
-.brand-logo span { font-size: 9px; letter-spacing: 8px; margin-top: 6px; color: #777; }
+
+/* Added specific styling for the image logo to reduce size as requested */
+.brand-logo img {
+    max-width: 160px; /* Reduced desktop size */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+/* Fallback/adjusted sizes if text is still used instead of the image */
+.brand-logo h1 {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 13px !important; /* Slightly reduced */
+    letter-spacing: 2.5px !important;
+    line-height: 1.4 !important;
+    text-transform: uppercase !important;
+    color: #111 !important;
+    margin: 0 !important; 
+    padding: 0 !important;
+}
+
+.brand-logo span {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 6px !important; /* Slightly reduced */
+    letter-spacing: 6px !important;
+    margin-top: 4px !important;
+    color: #777 !important;
+    display: block !important;
+    text-transform: uppercase !important;
+}
 
 .btn-reserve {
     border: 1px solid #111; background: transparent; color: #111;
@@ -102,7 +144,7 @@ a { text-decoration: none; color: inherit; }
 .hamburger {
     display: none;
     cursor: pointer;
-    z-index: 101; /* Stay above mobile menu */
+    z-index: 101; 
     padding: 10px;
 }
 
@@ -349,8 +391,6 @@ a { text-decoration: none; color: inherit; }
 
 /* ==========================================================================
    FORCE FOOTER VISIBILITY FIX
-   Ensures the footer elements always show up on pages where the 
-   intersection observer fails to trigger.
    ========================================================================== */
 .site-footer .reveal {
     opacity: 1 !important;
@@ -365,24 +405,15 @@ a { text-decoration: none; color: inherit; }
 }
 .whatsapp-widget:hover { transform: translateY(-5px) scale(1.05); }
 
-.language-selector {
-    position: fixed; bottom: 30px; left: 30px; background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(8px); padding: 10px 18px; display: flex; align-items: center; gap: 10px;
-    font-size: 11px; font-weight: 600; border-radius: 30px; cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15); z-index: 90; transition: all 0.3s ease; color: #333;
-}
-.language-selector:hover { background: #ffffff; transform: translateY(-3px); }
-.language-selector img { width: 18px; border-radius: 2px; }
-
 /* ==========================================
    Responsive Adjustments
    ========================================== */
 @media (max-width: 1200px) {
-    .nav-group { display: none; } /* Hide desktop links */
+    .nav-group { display: none; } 
     .navbar { 
         justify-content: center; 
         padding: 15px 25px; 
-        position: relative; /* Setup context for hamburger */
+        position: relative; /* Setup context for hamburger inside the sticky wrapper */
     }
     .hamburger { 
         display: block; 
@@ -394,16 +425,25 @@ a { text-decoration: none; color: inherit; }
 }
 @media (max-width: 900px) {
     .blog-container { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); padding: 40px 20px 80px; }
-    .blog-hero { background-attachment: scroll; } /* Better performance on smaller screens */
+    .blog-hero { background-attachment: scroll; } 
 }
 @media (max-width: 768px) {
-    .top-bar { flex-direction: column; gap: 8px; text-align: center; padding: 10px 15px; }
-    .top-bar-left { justify-content: center; gap: 10px; }
+    /* Stacking Top Bar in mobile perfectly as per reference image */
+    .top-bar { flex-direction: column; gap: 6px; text-align: center; padding: 12px 15px; }
+    .top-bar-left { flex-direction: column; gap: 6px; }
+    .top-bar-right { margin-top: 2px; }
     
     .navbar { padding: 12px 20px; }
     .hamburger { right: 20px; }
-    .brand-logo h1 { font-size: 16px; letter-spacing: 2px; }
-    .brand-logo span { font-size: 8px; letter-spacing: 5px; }
+    
+    /* Reduced mobile sizes for image logo */
+    .brand-logo img {
+        max-width: 120px; /* Reduced mobile size */
+    }
+
+    /* Fallback/reduced mobile sizes to look delicate and override external styles */
+    .brand-logo h1 { font-size: 9px !important; letter-spacing: 1.5px !important; line-height: 1.4 !important; }
+    .brand-logo span { font-size: 4px !important; letter-spacing: 4px !important; margin-top: 3px !important; }
     
     .mobile-nav-links a { font-size: 14px; letter-spacing: 3px; }
     
@@ -416,7 +456,6 @@ a { text-decoration: none; color: inherit; }
     .newsletter-form { width: 100%; max-width: 300px; margin: 15px auto 0; }
     
     .whatsapp-widget { width: 48px; height: 48px; font-size: 26px; bottom: 20px; right: 20px; }
-    .language-selector { padding: 8px 14px; font-size: 10px; bottom: 25px; left: 20px; }
 }
 @media (max-width: 480px) {
     .blog-container { grid-template-columns: 1fr; }

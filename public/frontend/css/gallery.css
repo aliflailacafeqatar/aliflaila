@@ -94,8 +94,9 @@ a {
     color: #d4af37;
 }
 
-/* --- Glassmorphism Navigation --- */
+/* --- Glassmorphism Navigation (Sticky Header) --- */
 .navbar-wrapper {
+    position: -webkit-sticky; /* For iOS Safari */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -159,7 +160,7 @@ a {
     width: 100%;
 }
 
-/* Brand Logo */
+/* Brand Logo Layout and Image Scaling */
 .brand-logo {
     text-align: center;
     display: flex;
@@ -172,6 +173,20 @@ a {
     z-index: 101; /* Stay above mobile menu */
 }
 
+/* Image Logo Styles */
+.brand-logo a {
+    display: block;
+    line-height: 0;
+}
+
+.brand-logo img {
+    max-height: 45px; /* Reduced slightly from original image size */
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+/* Fallback/Previous Text Styles */
 .brand-logo h1 {
     font-weight: 400;
     font-size: 19px;
@@ -739,6 +754,11 @@ a {
 
     .navbar { padding: 12px 20px; min-height: 65px; }
     .hamburger { right: 20px; }
+    
+    /* Reduced image logo size for Mobile */
+    .brand-logo img { max-height: 32px; }
+    
+    /* Fallback Text Scaling */
     .brand-logo h1 { font-size: 16px; letter-spacing: 2px; }
     .brand-logo span { font-size: 8px; letter-spacing: 5px; }
     
@@ -769,6 +789,9 @@ a {
         grid-row: span 1;
     }
     .gallery-bottom-item { flex: 0 0 100%; height: 300px; border-right: none;}
+    
+    /* Even smaller logo for tiny mobile screens */
+    .brand-logo img { max-height: 28px; }
     
     .brand-logo h1 { font-size: 14px; letter-spacing: 1.5px; }
     .brand-logo span { font-size: 7px; letter-spacing: 4px; }
