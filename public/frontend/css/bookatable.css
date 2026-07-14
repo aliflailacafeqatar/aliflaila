@@ -466,7 +466,7 @@ a { text-decoration: none; color: inherit; }
 .footer-links a:hover { color: #d4af37; }
 .footer-socials { display: flex; gap: 15px; margin-bottom: 30px; font-size: 16px; color: #ffffff; }
 .footer-socials a:hover { color: #d4af37; }
-.footer-bottom { border-top: 1px solid #1a1a1a; max-width: 1400px; margin: 60px auto 0; padding-top: 25px; text-align: center; font-size: 9px; letter-spacing: 1.5px; color: #555; text-transform: uppercase; }
+.footer-bottom { border-top: 1px solid #ffffff; max-width: 1400px; margin: 60px auto 0; padding-top: 25px; text-align: center; font-size: 9px; letter-spacing: 1.5px; color: #555; text-transform: uppercase; }
 
 /* --- Super Mobile Responsiveness --- */
 @media (max-width: 1200px) {
