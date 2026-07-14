@@ -355,7 +355,7 @@ a { text-decoration: none; color: inherit; }
 .phone-input-group {
     display: flex;
     gap: 10px;
-}
+    }
 .phone-code {
     width: 120px;
     flex-shrink: 0;

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\MenuCategory;
 use App\Models\FoodItem;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\InvoiceController; // Added InvoiceController
 
 // Home Page
 Route::get('/', function () {
@@ -11,22 +13,24 @@ Route::get('/', function () {
 
 // Menu Page
 Route::get('/menu', function () {
-    // Fetch active categories and their active food items
     $categories = MenuCategory::with(['foodItems' => function($query) {
         $query->where('is_active', true);
     }])->where('is_active', true)->get();
 
-    // Pass the $categories variable to your home.menu view
     return view('home.menu', compact('categories'));
 });
 
-// Reservation Page
+// Reservation Page (View the Form)
 Route::get('/bookatable', function () {
-    // Fetch active food items for the pre-order slider
     $foodItems = FoodItem::where('is_active', true)->get();
-    
     return view('home.bookatable', compact('foodItems'));
 });
+
+// Handle Reservation Form Submission
+Route::post('/bookatable/submit', [ReservationController::class, 'store'])->name('bookatable.submit');
+
+// --- NEW INVOICE ROUTE ---
+Route::get('/reservations/{reservation}/invoice', [InvoiceController::class, 'generate'])->name('reservation.invoice');
 
 // Blog Page
 Route::get('/blog', function () {
@@ -48,7 +52,7 @@ Route::get('/contactus', function () {
     return view('home.contactus');
 });
 
-// Thank You Page (Triggered when the user clicks 'Continue' on the booking page)
+// Thank You Page
 Route::get('/thankyou', function () {
     return view('home.thankyou');
 });

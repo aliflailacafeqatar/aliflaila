@@ -27,10 +27,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* --- Handle Time Slot Selection --- */
+    /* --- Handle Dynamic Form Validation & Submission --- */
     const timeButtons = document.querySelectorAll('.time-slot-btn');
     const continueBtn = document.getElementById('continueBtn');
+    const hiddenTimeInput = document.getElementById('hidden-arrival-time');
+    const hiddenFoodInput = document.getElementById('hidden-food-items');
+    const form = document.getElementById('reservationForm');
+    const agreeTerms = document.getElementById('agree-terms');
 
+    // Function to check if the button can be enabled
+    function validateFormReadiness() {
+        if (hiddenTimeInput.value !== '' && agreeTerms.checked) {
+            continueBtn.disabled = false;
+            continueBtn.classList.add('ready');
+        } else {
+            continueBtn.disabled = true;
+            continueBtn.classList.remove('ready');
+        }
+    }
+
+    // Terms checkbox listener
+    if(agreeTerms) {
+        agreeTerms.addEventListener('change', validateFormReadiness);
+    }
+
+    // Time Slot Selection
     timeButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             // Remove active class from all
@@ -38,10 +59,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add to clicked
             this.classList.add('active');
             
-            // Enable continue button
-            continueBtn.disabled = false;
-            continueBtn.classList.add('ready');
+            // Set the value of the hidden input for the backend
+            hiddenTimeInput.value = this.innerText;
+            
+            // Update button UI
             continueBtn.innerHTML = `Continue with ${this.innerText} <i class="fas fa-arrow-right" style="margin-left:8px;"></i>`;
+            
+            // Check if form is ready to be submitted
+            validateFormReadiness();
             
             // Update reservation details dynamically
             updateSummary();
@@ -56,6 +81,19 @@ document.addEventListener('DOMContentLoaded', () => {
             this.classList.toggle('active');
         });
     });
+
+    // Capture the selected food items right before the form submits
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            const activeFood = [];
+            document.querySelectorAll('.food-btn.active').forEach(btn => {
+                // Grab the ID from the data-id attribute we added in Blade
+                activeFood.push(btn.getAttribute('data-id')); 
+            });
+            // Combine array into a string (e.g., "1,4,7")
+            hiddenFoodInput.value = activeFood.join(',');
+        });
+    }
 
     /* --- Accordion Toggle Reusable Function --- */
     function setupAccordion(headerId, contentId) {

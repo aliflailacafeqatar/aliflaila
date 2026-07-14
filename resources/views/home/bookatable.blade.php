@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Link to your separate CSS file -->
     <link rel="stylesheet" href="{{ asset('frontend/css/bookatable.css') }}">
 </head>
 <body>
@@ -74,8 +73,12 @@
     </div>
 
     <main class="reservation-section">
-        <div class="booking-card reveal active">
+        <form action="{{ route('bookatable.submit') }}" method="POST" id="reservationForm" class="booking-card reveal active">
+            @csrf
             
+            <input type="hidden" name="arrival_time" id="hidden-arrival-time" required>
+            <input type="hidden" name="food_items" id="hidden-food-items">
+
             <div class="card-header">
                 <div class="card-brand">
                     <h2>ALIF LAILA CAFÉ</h2>
@@ -91,13 +94,13 @@
                 <div class="input-group">
                     <label>Guests</label>
                     <div class="input-wrapper">
-                        <select id="guest-select">
-                            <option>1</option>
-                            <option selected>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6+</option>
+                        <select id="guest-select" name="guests">
+                            <option value="1">1</option>
+                            <option value="2" selected>2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6+">6+</option>
                         </select>
                     </div>
                 </div>
@@ -105,18 +108,17 @@
                 <div class="input-group">
                     <label>Date</label>
                     <div class="input-wrapper date-wrapper">
-                        <!-- Dynamically sets today as the minimum date and default value -->
-                        <input type="date" id="date-input" min="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}">
+                        <input type="date" name="date" id="date-input" min="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}" required>
                     </div>
                 </div>
 
                 <div class="input-group">
                     <label>Select seating option</label>
                     <div class="input-wrapper">
-                        <select>
-                            <option selected>No preference</option>
-                            <option>Indoor</option>
-                            <option>Outdoor Terrace</option>
+                        <select name="seating_preference">
+                            <option value="No preference" selected>No preference</option>
+                            <option value="Indoor">Indoor</option>
+                            <option value="Outdoor Terrace">Outdoor Terrace</option>
                         </select>
                     </div>
                 </div>
@@ -131,16 +133,14 @@
                 <div class="section-title-small">Select multiple items</div>
                 
                 <div class="slider-wrapper">
-                    <button class="slider-arrow left-arrow"><i class="fas fa-chevron-left"></i></button>
+                    <button type="button" class="slider-arrow left-arrow"><i class="fas fa-chevron-left"></i></button>
                     <div class="slider-track">
-                        <!-- Dynamic Food Items Loop -->
                         @foreach($foodItems as $item)
                             <button type="button" class="time-btn food-btn" data-id="{{ $item->id }}">{{ $item->name }}</button>
                         @endforeach
                     </div>
-                    <button class="slider-arrow right-arrow"><i class="fas fa-chevron-right"></i></button>
+                    <button type="button" class="slider-arrow right-arrow"><i class="fas fa-chevron-right"></i></button>
                 </div>
-
             </div>
 
             <div class="accordion-header open" id="timeToggle">
@@ -152,7 +152,7 @@
                 <div class="section-title-small">Select a time</div>
                 
                 <div class="slider-wrapper">
-                    <button class="slider-arrow left-arrow"><i class="fas fa-chevron-left"></i></button>
+                    <button type="button" class="slider-arrow left-arrow"><i class="fas fa-chevron-left"></i></button>
                     <div class="slider-track">
                         <button type="button" class="time-btn time-slot-btn">9:00 AM</button>
                         <button type="button" class="time-btn time-slot-btn">9:30 AM</button>
@@ -184,9 +184,8 @@
                         <button type="button" class="time-btn time-slot-btn">10:30 PM</button>
                         <button type="button" class="time-btn time-slot-btn">11:00 PM</button>
                     </div>
-                    <button class="slider-arrow right-arrow"><i class="fas fa-chevron-right"></i></button>
+                    <button type="button" class="slider-arrow right-arrow"><i class="fas fa-chevron-right"></i></button>
                 </div>
-                
             </div>
 
             <div class="personal-details-form">
@@ -200,11 +199,11 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label>First name</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="first_name" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Last name</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="last_name" class="form-control" required>
                     </div>
                 </div>
 
@@ -213,7 +212,7 @@
                         <label>Email</label>
                         <a href="#" class="form-link">Why do we need this info?</a>
                     </div>
-                    <input type="email" class="form-control">
+                    <input type="email" name="email" class="form-control" required>
                 </div>
 
                 <div class="form-group">
@@ -222,13 +221,13 @@
                         <select class="form-control phone-code">
                             <option>QA +974</option>
                         </select>
-                        <input type="tel" class="form-control phone-number">
+                        <input type="tel" name="phone" class="form-control phone-number" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Special requests</label>
-                    <textarea class="form-control" rows="4"></textarea>
+                    <textarea name="special_requests" class="form-control" rows="4"></textarea>
                 </div>
 
                 <h3 class="form-section-title">Restaurant Terms & Conditions</h3>
@@ -236,16 +235,16 @@
                 <p class="terms-text">Please view this link for <a href="#">Terms and Conditions</a></p>
                 
                 <div class="checkbox-group">
-                    <input type="checkbox" id="agree-terms">
+                    <input type="checkbox" id="agree-terms" required>
                     <label for="agree-terms">I agree to the restaurant's Terms & Conditions</label>
                 </div>
                 
                 <p class="terms-subtext">By continuing, you agree to Eat App's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
             </div>
 
-            <button class="btn-continue" id="continueBtn" disabled onclick="window.location.href='{{ url('/thankyou') }}';">Continue</button>
+            <button type="submit" class="btn-continue" id="continueBtn" disabled>Continue</button>
 
-        </div>
+        </form>
     </main>
 
     <footer class="site-footer">
@@ -293,7 +292,6 @@
         </div>
     </footer>
 
-    <!-- Link to your separate JS file -->
     <script src="{{ asset('frontend/js/bookatable.js') }}"></script>
 </body>
 </html>
