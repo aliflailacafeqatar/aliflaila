@@ -5,59 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Book a Table | Alif Laila Cafe</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    @include('home.css')
     <link rel="stylesheet" href="{{ asset('frontend/css/bookatable.css') }}">
 </head>
 <body>
 
-    <header>
-        <div class="top-bar">
-            <div class="top-bar-left">
-                <span><i class="fas fa-phone-alt"></i> +971 777723547</span>
-                <span><i class="fas fa-asterisk"></i> LUXURY AVENUE, DOHA, QATAR</span>
-            </div>
-            <div class="top-bar-right">
-                <span>MON - THU: 9AM TO 12AM | FRI - SUN: 9AM TO 1AM</span>
-            </div>
-        </div>
-
-        <div class="navbar-wrapper">
-            <nav class="navbar">
-                <div class="nav-group left">
-                    <ul class="nav-links">
-                        <li><a href="{{ url('/') }}">HOME</a></li>
-                        <li><a href="{{ url('/menu') }}">MENU</a></li>
-                        <li><a href="{{ url('/bookatable') }}" class="active">RESERVATIONS</a></li>
-                        <li><a href="{{ url('/blog') }}">BLOG</a></li>
-                    </ul>
-                </div>
-
-                <div class="brand-logo">
-                    <h1>Alif Laila Cafe & <br>Restaurant</h1>
-                    <span>QATAR</span>
-                </div>
-
-                <div class="nav-group right">
-                    <ul class="nav-links">
-                        <li><a href="{{ url('/aboutus') }}">ABOUT US</a></li>
-                        <li><a href="{{ url('/gallery') }}">GALLERY</a></li>
-                        <li><a href="{{ url('/contactus') }}">CONTACT US</a></li>
-                    </ul>
-                    <button class="btn-reserve" onclick="window.location.href='{{ url('/bookatable') }}'">RESERVE A TABLE</button>
-                </div>
-                
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </nav>
-        </div>
-    </header>
+    @include('home.header')
 
     <div class="mobile-menu" id="mobile-menu">
         <ul class="mobile-nav-links">
@@ -247,50 +200,7 @@
         </form>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-col brand">
-                <a href="{{ url('/') }}" class="footer-logo">
-                    Alif Laila Cafe
-                    <span>QATAR</span>
-                </a>
-                <p>Offering a vibrant mix of authentic Arabic, Indian, Filipino, and Continental dishes, ALIF LAILA CAFE is the perfect destination for food lovers. A seamless blend of global flavors and warm Middle Eastern hospitality.</p>
-            </div>
-
-            <div class="footer-col">
-                <h4>CONTACT US</h4>
-                <p>LUXURY AVENUE, DOHA</p>
-                <p>WHATSAPP: +971 777723547</p>
-                <p>EMAIL: CONTACT@ALIFLAILACAFE.COM</p>
-                <p style="margin-top: 15px; text-transform: uppercase;">MON-THU 9AM to 12AM | FRI-SUN 9AM to 1AM</p>
-            </div>
-
-            <div class="footer-col">
-                <h4>SITEMAP</h4>
-                <ul class="footer-links">
-                    <li><a href="{{ url('/') }}">HOME</a></li>
-                    <li><a href="{{ url('/menu') }}">MENU</a></li>
-                    <li><a href="{{ url('/bookatable') }}">RESERVATIONS</a></li>
-                    <li><a href="{{ url('/blog') }}">BLOG</a></li>
-                    <li><a href="#">PRIVACY POLICY</a></li>
-                    <li><a href="#">TERMS</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>FOLLOW US</h4>
-                <div class="footer-socials">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            &copy; 2024 ALIF LAILA CAFE & RESTAURANT. ALL RIGHTS RESERVED.
-        </div>
-    </footer>
+    @include('home.footer')
 
     <script src="{{ asset('frontend/js/bookatable.js') }}"></script>
 </body>

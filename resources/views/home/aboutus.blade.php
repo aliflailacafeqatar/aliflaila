@@ -36,11 +36,15 @@
             </div>
         </section>
 
-        <!-- Parallax Video Showcase -->
+        <!-- Video Showcase (Text Overlay) -->
         <section class="parallax-showcase">
+            <video class="showcase-video" poster="image_4bf484.jpg" autoplay loop muted playsinline>
+                <source src="{{ asset('frontend/vid/video1.mp4') }}" type="video/mp4">
+            </video>
             <div class="parallax-overlay"></div>
-            <div class="play-btn-wrapper reveal">
-                <i class="fas fa-play"></i>
+            <div class="showcase-text-wrapper reveal">
+                <h2>Taste the World in Doha</h2>
+                <p>Where Culinary Traditions Meet Modern Elegance</p>
             </div>
         </section>
 

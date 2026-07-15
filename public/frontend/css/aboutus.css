@@ -35,12 +35,6 @@ a {
     100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
-@keyframes pulseWhite {
-    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
-    70% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
-}
-
 /* Enhanced Scroll Reveal Utility Classes */
 .reveal {
     opacity: 0;
@@ -180,7 +174,7 @@ a {
     transition: max-width 0.3s ease;
 }
 
-/* Legacy text logo classes (kept just in case you ever switch back) */
+/* Legacy text logo classes */
 .brand-logo h1 {
     font-weight: 400;
     font-size: 19px;
@@ -438,7 +432,7 @@ a {
     color: #050505;
 }
 
-/* --- Parallax Video Showcase --- */
+/* --- Video Showcase --- */
 .parallax-showcase {
     position: relative;
     height: 60vh;
@@ -446,37 +440,55 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url('https://images.unsplash.com/photo-1512632578888-169bbbc64f33?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
-    background-size: cover;
-    background-attachment: fixed;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.showcase-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
 }
 
 .parallax-overlay {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.3);
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Darkened slightly for text readability */
+    z-index: 1;
 }
 
-.play-btn-wrapper {
+.showcase-text-wrapper {
     position: relative;
-    z-index: 3;
-    width: 80px;
-    height: 80px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: #111;
-    font-size: 24px;
-    padding-left: 6px; 
-    animation: pulseWhite 2.5s infinite;
-    transition: transform 0.3s ease;
+    z-index: 2;
+    text-align: center;
+    color: #ffffff;
+    padding: 0 20px;
+    max-width: 800px;
 }
 
-.play-btn-wrapper:hover {
-    transform: scale(1.1);
+.showcase-text-wrapper h2 {
+    font-size: 32px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-weight: 500;
+    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.7);
+}
+
+.showcase-text-wrapper p {
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.7);
+    color: #eeeeee;
+    text-transform: uppercase;
 }
 
 /* --- Robust Split Dark Sections --- */
@@ -812,11 +824,11 @@ a {
 
 /* --- Super Mobile Responsiveness --- */
 @media (max-width: 1200px) {
-    .nav-group { display: none; } /* Hide desktop nav groups */
+    .nav-group { display: none; }
     .navbar { 
         justify-content: center; 
         padding: 15px 25px; 
-        position: relative; /* Context for absolutely positioned hamburger */
+        position: relative; 
     }
     .hamburger { 
         display: block; 
@@ -828,7 +840,6 @@ a {
 }
 
 @media (max-width: 900px) {
-    /* Forced Column Layout to Prevent Breakage */
     .split-dark-section-container {
         flex-direction: column !important;
         text-align: center;
@@ -836,8 +847,6 @@ a {
     }
     .split-dark-section { padding: 70px 5%; }
     .split-img-wrapper img { height: 450px; max-width: 100%; }
-    
-    .parallax-showcase { background-attachment: scroll; } 
     
     .gallery-grid { flex-wrap: wrap; height: auto; }
     .gallery-item { flex: 0 0 50%; height: 300px; border-bottom: 1px solid #1a1a1a; }
@@ -849,11 +858,10 @@ a {
     .top-bar-left span { display: block; }
 
     .navbar { padding: 12px 20px; }
-    .hamburger { right: 20px; } /* Update hamburger right position mapping with padding */
+    .hamburger { right: 20px; } 
     
-    /* NEW: Adjust logo size for mobile specifically */
     .brand-logo img {
-        max-width: 125px; /* Reduced for mobile */
+        max-width: 125px; 
     }
 
     .brand-logo h1 { font-size: 16px; letter-spacing: 2px; }
@@ -867,6 +875,10 @@ a {
     .dark-intro { padding: 80px 20px; }
     .dark-intro h2 { font-size: 20px; }
     .dark-intro p { font-size: 11px; }
+
+    /* Showcase mobile text */
+    .showcase-text-wrapper h2 { font-size: 22px; letter-spacing: 4px; }
+    .showcase-text-wrapper p { font-size: 12px; }
 
     .split-text-wrapper h3 { font-size: 18px; letter-spacing: 3px; }
     .experiences-header h2 { font-size: 18px; padding: 70px 20px; }

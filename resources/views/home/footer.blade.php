@@ -35,11 +35,20 @@
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
             </div>
-            <h4 style="margin-top: 30px; margin-bottom: 5px;">SIGN UP FOR NEWSLETTER</h4>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Enter your email" class="newsletter-input" required>
-                <button type="submit" class="newsletter-btn"><i class="fas fa-arrow-right"></i></button>
-            </form>
+            
+            <h4 style="margin-top: 30px; margin-bottom: 10px;">OUR LOCATION</h4>
+            <!-- Embedded Map container matching your layout -->
+            <div style="border-radius: 8px; overflow: hidden; width: 100%; height: 150px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.8653083696395!2d51.4196388760591!3d25.40931882307505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45e10054147431%3A0x77c7d0f45dd729c!2sAlif%20Laila%20Cafe%20%26%20Restaurant!5e0!3m2!1sen!2sbd!4v1784131076752!5m2!1sen!2sbd" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0; display:block;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="strict-origin-when-cross-origin">
+                </iframe>
+            </div>
         </div>
     </div>
 
