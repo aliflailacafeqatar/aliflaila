@@ -19,7 +19,7 @@
         <ul class="mobile-nav-links">
             <li><a href="{{ url('/') }}">HOME</a></li>
             <li><a href="{{ url('/menu') }}" class="active">MENU</a></li>
-            <li><a href="{{ url('/reserve') }}">RESERVATIONS</a></li>
+            <li><a href="{{ url('/bookatable') }}">RESERVATIONS</a></li>
             <li><a href="{{ url('/blog') }}">BLOG</a></li>
             <li><a href="{{ url('/aboutus') }}">ABOUT US</a></li>
             <li><a href="{{ url('/gallery') }}">GALLERY</a></li>

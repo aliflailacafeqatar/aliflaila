@@ -10,8 +10,6 @@
 </head>
 <body>
 
-    @include('home.header')
-
     <div class="mobile-menu" id="mobile-menu">
         <ul class="mobile-nav-links">
             <li><a href="{{ url('/') }}">HOME</a></li>
@@ -24,7 +22,9 @@
         </ul>
         <button class="btn-reserve" onclick="window.location.href='{{ url('/bookatable') }}'">RESERVE A TABLE</button>
     </div>
-
+    
+    @include('home.header')
+    
     <main class="reservation-section">
         <form action="{{ route('bookatable.submit') }}" method="POST" id="reservationForm" class="booking-card reveal active">
             @csrf

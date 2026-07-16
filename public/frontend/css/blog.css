@@ -1,24 +1,22 @@
 /* ==========================================
-   CSS Reset & General (Inherited)
+   CSS Reset & General
    ========================================== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #faf9f6; 
     color: #333;
-    /* Allows position: sticky to work properly on both desktop and mobile */
-    overflow-x: clip; 
+    overflow-x: hidden; 
     -webkit-font-smoothing: antialiased;
 }
 
-/* Prevent body scroll when mobile menu is open */
 body.no-scroll {
     overflow: hidden;
 }
 
 a { text-decoration: none; color: inherit; }
 
-/* --- Animations (Inherited) --- */
+/* --- Animations --- */
 @keyframes fadeInUp {
     0% { opacity: 0; transform: translateY(40px); }
     100% { opacity: 1; transform: translateY(0); }
@@ -43,95 +41,128 @@ a { text-decoration: none; color: inherit; }
 .delay-3 { transition-delay: 0.3s; }
 
 /* ==========================================
-   Top Bar & Navigation (Inherited)
+   Top Bar & Navigation
    ========================================== */
 .top-bar {
-    background-color: #0a0a0a; color: #eeeeee; font-size: 10px;
-    letter-spacing: 1.5px; padding: 10px 30px; display: flex;
-    justify-content: space-between; align-items: center; text-transform: uppercase;
-    position: relative; z-index: 20;
+    background-color: #0a0a0a; 
+    color: #eeeeee; 
+    font-size: 10px;
+    letter-spacing: 1.5px; 
+    padding: 12px 30px; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    text-transform: uppercase;
+    position: relative; 
+    z-index: 20;
 }
-.top-bar-left { display: flex; align-items: center; gap: 25px; flex-wrap: wrap; }
-.top-bar-left i { margin-right: 6px; color: #d4af37; }
+.top-bar-left { 
+    display: flex; 
+    align-items: center; 
+    gap: 25px; 
+    flex-wrap: wrap; 
+}
+.top-bar-left i { 
+    margin-right: 6px; 
+    color: #d4af37; 
+}
 
-/* Sticky Header styling for Desktop & Mobile */
+/* Sticky Navbar Wrapper */
 .navbar-wrapper {
-    position: -webkit-sticky !important; /* Added for iOS Safari support */
-    position: sticky !important; 
-    top: 0 !important; 
-    z-index: 100 !important; 
-    background: rgba(255, 255, 255, 0.95); 
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.3);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); transition: all 0.3s ease;
+    position: -webkit-sticky; 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+    background: rgba(255, 255, 255, 0.98); 
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); 
+    transition: all 0.3s ease;
 }
 .navbar {
-    padding: 15px 40px; display: flex; justify-content: space-between;
-    align-items: center; max-width: 1600px; margin: 0 auto;
+    padding: 15px 40px; 
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+    max-width: 1600px; 
+    margin: 0 auto;
+    position: relative;
 }
-.nav-group { display: flex; align-items: center; flex: 1; }
+.nav-group { 
+    display: flex; 
+    align-items: center; 
+    flex: 1; 
+}
 .nav-group.left { justify-content: flex-start; }
 .nav-group.right { justify-content: flex-end; gap: 30px; }
-.nav-links { list-style: none; display: flex; gap: 25px; font-size: 11px; letter-spacing: 2px; font-weight: 500; }
-.nav-links li a { position: relative; padding-bottom: 5px; transition: color 0.3s ease; }
-.nav-links li a:hover { color: #d4af37; }
-.nav-links li a::after {
-    content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0;
-    background-color: #d4af37; transition: width 0.3s ease;
+.nav-links { 
+    list-style: none; 
+    display: flex; 
+    gap: 25px; 
+    font-size: 11px; 
+    letter-spacing: 2px; 
+    font-weight: 500; 
 }
-.nav-links li a:hover::after, .nav-links li a.active::after { width: 100%; }
+.nav-links li a { 
+    position: relative; 
+    padding-bottom: 5px; 
+    transition: color 0.3s ease; 
+}
+.nav-links li a:hover, 
+.nav-links li a.active { 
+    color: #d4af37; 
+}
+.nav-links li a::after {
+    content: ''; 
+    position: absolute; 
+    width: 0; 
+    height: 1px; 
+    bottom: 0; 
+    left: 0;
+    background-color: #d4af37; 
+    transition: width 0.3s ease;
+}
+.nav-links li a:hover::after, 
+.nav-links li a.active::after { 
+    width: 100%; 
+}
 
-/* Brand Logo - Forced constraints to prevent external CSS from breaking it */
+/* Brand Logo Styling */
 .brand-logo {
     text-align: center;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 10px;
-    flex: 0 0 auto;
     position: relative;
     z-index: 101; 
-    text-decoration: none !important;
 }
-
-/* Added specific styling for the image logo to reduce size as requested */
+.brand-logo a {
+    display: block;
+    text-decoration: none;
+}
 .brand-logo img {
-    max-width: 160px; /* Reduced desktop size */
-    height: auto;
+    max-height: 60px;
+    width: auto;
     display: block;
     margin: 0 auto;
-    transition: all 0.3s ease;
 }
 
-/* Fallback/adjusted sizes if text is still used instead of the image */
-.brand-logo h1 {
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 400 !important;
-    font-size: 13px !important; /* Slightly reduced */
-    letter-spacing: 2.5px !important;
-    line-height: 1.4 !important;
-    text-transform: uppercase !important;
-    color: #111 !important;
-    margin: 0 !important; 
-    padding: 0 !important;
-}
-
-.brand-logo span {
-    font-family: 'Montserrat', sans-serif !important;
-    font-size: 6px !important; /* Slightly reduced */
-    letter-spacing: 6px !important;
-    margin-top: 4px !important;
-    color: #777 !important;
-    display: block !important;
-    text-transform: uppercase !important;
-}
-
+/* Reserve Button */
 .btn-reserve {
-    border: 1px solid #111; background: transparent; color: #111;
-    padding: 12px 28px; font-size: 11px; letter-spacing: 1.5px;
-    text-transform: uppercase; cursor: pointer; position: relative;
-    overflow: hidden; transition: color 0.4s ease; font-weight: 600; white-space: nowrap;
+    border: 1px solid #111; 
+    background: transparent; 
+    color: #111;
+    padding: 12px 28px; 
+    font-size: 11px; 
+    letter-spacing: 1.5px;
+    text-transform: uppercase; 
+    cursor: pointer; 
+    position: relative;
+    overflow: hidden; 
+    transition: color 0.4s ease; 
+    font-weight: 600; 
+    white-space: nowrap;
 }
 .btn-reserve::before {
     content: ''; position: absolute; top: 0; left: -100%; width: 100%;
@@ -143,68 +174,60 @@ a { text-decoration: none; color: inherit; }
 /* --- Mobile Navigation & Hamburger --- */
 .hamburger {
     display: none;
-    cursor: pointer;
-    z-index: 101; 
-    padding: 10px;
 }
-
-.hamburger .bar {
-    display: block;
-    width: 25px;
-    height: 2px;
-    margin: 5px auto;
-    background-color: #111;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.hamburger.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.active .bar:nth-child(2) { opacity: 0; }
-.hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* Mobile Menu Overlay */
 .mobile-menu {
-    position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
-    background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(15px);
-    z-index: 100; display: flex; flex-direction: column;
-    justify-content: center; align-items: center;
-    transition: right 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    position: fixed; 
+    top: 0; 
+    right: -100%; 
+    width: 100%; 
+    height: 100vh;
+    background: #ffffff; 
+    z-index: 9999; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-.mobile-menu.active { right: 0; }
+.mobile-menu.active { 
+    right: 0; 
+}
 
-.mobile-nav-links { list-style: none; text-align: center; margin-bottom: 40px; width: 100%; }
-.mobile-nav-links li { margin: 25px 0; opacity: 0; transform: translateY(30px); transition: all 0.5s ease; }
-.mobile-nav-links a { font-size: 16px; letter-spacing: 4px; font-weight: 500; color: #111; text-transform: uppercase; position: relative; padding-bottom: 5px; }
-.mobile-nav-links a.active { color: #d4af37; }
-
-/* Staggered Animation for Mobile Links */
-.mobile-menu.active .mobile-nav-links li { opacity: 1; transform: translateY(0); }
-.mobile-menu.active .mobile-nav-links li:nth-child(1) { transition-delay: 0.1s; }
-.mobile-menu.active .mobile-nav-links li:nth-child(2) { transition-delay: 0.15s; }
-.mobile-menu.active .mobile-nav-links li:nth-child(3) { transition-delay: 0.2s; }
-.mobile-menu.active .mobile-nav-links li:nth-child(4) { transition-delay: 0.25s; }
-.mobile-menu.active .mobile-nav-links li:nth-child(5) { transition-delay: 0.3s; }
-.mobile-menu.active .mobile-nav-links li:nth-child(6) { transition-delay: 0.35s; }
-.mobile-menu.active .mobile-nav-links li:nth-child(7) { transition-delay: 0.4s; }
+.mobile-nav-links { 
+    list-style: none; 
+    text-align: center; 
+    margin-bottom: 40px; 
+    width: 100%; 
+    padding: 0; 
+}
+.mobile-nav-links li { 
+    margin: 22px 0; 
+}
+.mobile-nav-links a { 
+    font-size: 13px; 
+    letter-spacing: 3px; 
+    font-weight: 500; 
+    color: #111; 
+    text-transform: uppercase; 
+    position: relative; 
+    transition: color 0.3s ease;
+}
+.mobile-nav-links a.active, 
+.mobile-nav-links a:hover { 
+    color: #d4af37; 
+}
 
 .mobile-menu .btn-reserve {
-    opacity: 0; transform: translateY(20px); transition: all 0.5s ease 0.5s;
-    font-size: 13px; padding: 15px 40px;
+    font-size: 12px; 
+    padding: 16px 40px;
 }
-.mobile-menu.active .btn-reserve { opacity: 1; transform: translateY(0); }
 
 /* ==========================================
-   Blog Specific Styles (New Modern UI)
+   Blog Specific Styles 
    ========================================== */
-
-/* Reading Progress Bar */
-.progress-container {
-    position: absolute; bottom: -1px; left: 0; width: 100%;
-    height: 2px; background: transparent; z-index: 101;
-}
-.progress-bar { height: 2px; background: #d4af37; width: 0%; }
-
-/* Blog Hero Parallax */
 .blog-hero {
     position: relative;
     height: 55vh;
@@ -245,7 +268,6 @@ a { text-decoration: none; color: inherit; }
     animation: fadeInUp 1s forwards 0.4s;
 }
 
-/* Blog Filters */
 .blog-filters-section {
     padding: 60px 20px 20px;
     text-align: center;
@@ -277,7 +299,6 @@ a { text-decoration: none; color: inherit; }
 .filter-btn:hover, .filter-btn.active { color: #111; }
 .filter-btn:hover::after, .filter-btn.active::after { width: 100%; }
 
-/* Blog Grid Layout */
 .blog-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -357,7 +378,6 @@ a { text-decoration: none; color: inherit; }
 .btn-read-more:hover { color: #d4af37; border-color: #d4af37; }
 .btn-read-more:hover i { transform: translateX(5px); }
 
-/* Load More Button */
 .load-more-wrapper { text-align: center; margin-top: 20px; margin-bottom: 80px; width: 100%; }
 .btn-load {
     background-color: transparent; border: 1px solid #111; color: #111;
@@ -365,37 +385,6 @@ a { text-decoration: none; color: inherit; }
     letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease;
 }
 .btn-load:hover { background-color: #111; color: #fff; }
-
-/* ==========================================
-   Footer & Widgets (Inherited)
-   ========================================== */
-.site-footer { background-color: #050505; color: #aaaaaa; padding: 80px 40px 30px; font-size: 11px; line-height: 1.8; border-top: 1px solid #1a1a1a; overflow: hidden; }
-.footer-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
-.footer-col { flex: 1; min-width: 220px; }
-.footer-col.brand { flex: 1.5; }
-.footer-col h4 { color: #ffffff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; font-weight: 600; }
-.footer-logo { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 300; letter-spacing: 4px; color: #ffffff; margin-bottom: 20px; display: inline-block; text-transform: uppercase; }
-.footer-logo span { display: block; font-size: 8px; letter-spacing: 6px; margin-top: 5px; color: #777; text-align: center; }
-.footer-links { list-style: none; }
-.footer-links li { margin-bottom: 12px; }
-.footer-links a { transition: color 0.3s ease; text-transform: uppercase; font-size: 10px; letter-spacing: 1px; }
-.footer-links a:hover { color: #d4af37; }
-.footer-socials { display: flex; gap: 15px; margin-bottom: 30px; font-size: 16px; color: #ffffff; }
-.footer-socials a:hover { color: #d4af37; }
-.newsletter-form { display: flex; margin-top: 15px; border-bottom: 1px solid #444; padding-bottom: 5px; }
-.newsletter-input { flex: 1; padding: 8px 0; background: transparent; border: none; color: #ffffff; font-size: 11px; outline: none; font-family: 'Montserrat', sans-serif; }
-.newsletter-input::placeholder { color: #777; }
-.newsletter-btn { background: transparent; color: #ffffff; border: none; font-size: 12px; cursor: pointer; padding: 0 10px; transition: color 0.3s ease; }
-.newsletter-btn:hover { color: #d4af37; }
-.footer-bottom { border-top: 1px solid #ffffff; max-width: 1400px; margin: 60px auto 0; padding-top: 25px; text-align: center; font-size: 9px; letter-spacing: 1.5px; color: #555; text-transform: uppercase; }
-
-/* ==========================================================================
-   FORCE FOOTER VISIBILITY FIX
-   ========================================================================== */
-.site-footer .reveal {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
 
 .whatsapp-widget {
     position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white;
@@ -406,57 +395,98 @@ a { text-decoration: none; color: inherit; }
 .whatsapp-widget:hover { transform: translateY(-5px) scale(1.05); }
 
 /* ==========================================
-   Responsive Adjustments
+   Responsive Mobile Adjustments 
    ========================================== */
 @media (max-width: 1200px) {
-    .nav-group { display: none; } 
+    .nav-group { display: none !important; } 
+    
     .navbar { 
-        justify-content: center; 
+        display: flex;
+        justify-content: center; /* PERFECTLY CENTERS THE LOGO */
+        align-items: center;
         padding: 15px 25px; 
-        position: relative; /* Setup context for hamburger inside the sticky wrapper */
+        position: relative; 
+        min-height: 70px;
     }
+    
+    .brand-logo {
+        position: static;
+        margin: 0 auto;
+    }
+
+    .brand-logo img {
+        max-height: 45px; 
+    }
+
     .hamburger { 
-        display: block; 
+        display: flex; 
+        flex-direction: column;
+        justify-content: space-between;
+        width: 25px;
+        height: 18px;
         position: absolute; 
         right: 25px; 
         top: 50%; 
         transform: translateY(-50%); 
+        cursor: pointer;
+        z-index: 10000; /* Must sit above mobile-menu */
     }
+    
+    .hamburger span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: #111;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+
+    .hamburger.active {
+        position: fixed;
+        top: 30px;
+        right: 25px;
+        transform: none;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 }
+
 @media (max-width: 900px) {
     .blog-container { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); padding: 40px 20px 80px; }
     .blog-hero { background-attachment: scroll; } 
 }
+
 @media (max-width: 768px) {
-    /* Stacking Top Bar in mobile perfectly as per reference image */
-    .top-bar { flex-direction: column; gap: 6px; text-align: center; padding: 12px 15px; }
-    .top-bar-left { flex-direction: column; gap: 6px; }
-    .top-bar-right { margin-top: 2px; }
+    /* Stacked Top Bar */
+    .top-bar { 
+        flex-direction: column; 
+        gap: 8px; 
+        text-align: center; 
+        padding: 12px 15px; 
+    }
+    .top-bar-left { 
+        flex-direction: column; 
+        gap: 8px; 
+        justify-content: center;
+    }
+    .top-bar-left span, .top-bar-right span {
+        display: block;
+        font-size: 9px;
+        font-weight: 500;
+    }
     
     .navbar { padding: 12px 20px; }
     .hamburger { right: 20px; }
-    
-    /* Reduced mobile sizes for image logo */
-    .brand-logo img {
-        max-width: 120px; /* Reduced mobile size */
-    }
-
-    /* Fallback/reduced mobile sizes to look delicate and override external styles */
-    .brand-logo h1 { font-size: 9px !important; letter-spacing: 1.5px !important; line-height: 1.4 !important; }
-    .brand-logo span { font-size: 4px !important; letter-spacing: 4px !important; margin-top: 3px !important; }
-    
-    .mobile-nav-links a { font-size: 14px; letter-spacing: 3px; }
     
     .blog-hero { height: 40vh; min-height: 300px; }
     .blog-hero-title { font-size: 28px; letter-spacing: 4px; }
     .blog-hero-subtitle { font-size: 35px; }
     
-    .site-footer { padding: 60px 20px 30px; text-align: center; }
-    .footer-col { min-width: 100%; align-items: center; display: flex; flex-direction: column; }
-    .newsletter-form { width: 100%; max-width: 300px; margin: 15px auto 0; }
-    
     .whatsapp-widget { width: 48px; height: 48px; font-size: 26px; bottom: 20px; right: 20px; }
 }
+
 @media (max-width: 480px) {
     .blog-container { grid-template-columns: 1fr; }
     .blog-img-wrapper { height: 220px; }

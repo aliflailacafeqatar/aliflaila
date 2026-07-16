@@ -33,7 +33,7 @@
         <!-- Hero Section -->
         <section class="hero-contact">
             <video class="hero-video" autoplay loop muted playsinline>
-                <source src="{{ asset('frontend/vid/video3.mp4') }}" type="video/mp4">
+                <source src="{{ asset('frontend/vid/video6.mp4') }}" type="video/mp4">
             </video>
             <div class="hero-bg"></div>
             <div class="hero-text-container">
