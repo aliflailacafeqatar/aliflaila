@@ -780,7 +780,7 @@ header {
     .navbar { padding: 12px 20px; min-height: 65px; }
     .hamburger { right: 20px; }
     
-    .brand-logo img { max-width: 120px; } /* Reduced mobile size */
+    .brand-logo img { max-width: 200px; } /* Matched to mobile layout image */
     
     .mobile-nav-links a { font-size: 14px; letter-spacing: 3px; }
 
@@ -800,7 +800,7 @@ header {
 }
 
 @media (max-width: 480px) {
-    .brand-logo img { max-width: 100px; } /* Even smaller for very small devices */
+    .brand-logo img { max-width: 180px; } /* Adjusted for smaller screens */
     
     .contact-buttons-row { flex-direction: column; width: 100%; }
     .btn-solid-dark { width: 100%; }
