@@ -6,7 +6,9 @@
     <title>Book a Table | Alif Laila Cafe</title>
     
     @include('home.css')
-    <link rel="stylesheet" href="{{ asset('frontend/css/bookatable.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('frontend/css/bookatable.css') }}?v=1.0.1">
+    
 </head>
 <body>
 
