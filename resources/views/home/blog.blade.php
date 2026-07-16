@@ -12,7 +12,7 @@
     @include('home.css')
 
     <!-- Link to your separate CSS file -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/blog.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/blog.css') }}?v=1.0.1">
 </head>
 <body>
 

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Link to separated CSS file -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/contactus.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/contactus.css') }}?v=1.0.1">
 </head>
 <body>
 

@@ -127,6 +127,7 @@
             <div class="gallery-header">
                 <h3>@ALIFLAILACAFEQATAR</h3>
             </div>
+        
             <div class="gallery-grid">
                 <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Coffee preparation">

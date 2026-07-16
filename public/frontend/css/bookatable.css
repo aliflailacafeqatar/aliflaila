@@ -16,6 +16,7 @@ a { text-decoration: none; color: inherit; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 .delay-1 { transition-delay: 0.1s; }
 .delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
 
 /* --- Top Bar & Navbar --- */
 .top-bar { background-color: #0a0a0a; color: #eeeeee; font-size: 10px; letter-spacing: 1.5px; padding: 10px 30px; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; position: relative; z-index: 20; }
@@ -139,22 +140,22 @@ a { text-decoration: none; color: inherit; }
 .btn-continue.ready:hover:not(:disabled) { background-color: #d4af37; }
 
 /* --- Modern Dark Footer --- */
-.site-footer { background-color: #050505; color: #aaaaaa; padding: 80px 40px 30px; font-size: 11px; line-height: 1.8; }
-.footer-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
-.footer-col { flex: 1; min-width: 220px; }
-.footer-col.brand { flex: 1.5; }
-.footer-col h4 { color: #ffffff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; font-weight: 600; }
-.footer-logo { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 300; letter-spacing: 4px; color: #ffffff; margin-bottom: 20px; display: inline-block; text-transform: uppercase; }
-.footer-logo span { display: block; font-size: 8px; letter-spacing: 6px; margin-top: 5px; color: #777; text-align: center; }
-.footer-col p { margin-bottom: 15px; }
+.site-footer { background-color: #070707; color: #999999; padding: 70px 40px 30px; font-size: 11px; line-height: 1.8; }
+.footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+.footer-col { flex: 1; min-width: 200px; }
+.footer-col.brand { flex: 1.2; padding-right: 20px; }
+.footer-col h4 { color: #ffffff; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; font-weight: 500; }
+.footer-logo { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 400; letter-spacing: 6px; color: #ffffff; margin-bottom: 20px; display: inline-block; text-transform: uppercase; }
+.footer-logo span { display: block; font-size: 8px; letter-spacing: 10px; margin-top: 6px; color: #555; text-align: center; margin-right: -10px; }
+.footer-col p { margin-bottom: 15px; color: #999999; }
 .footer-links { list-style: none; }
-.footer-links li { margin-bottom: 12px; }
-.footer-links a { transition: color 0.3s ease; text-transform: uppercase; font-size: 10px; letter-spacing: 1px; }
+.footer-links li { margin-bottom: 15px; }
+.footer-links a { transition: color 0.3s ease; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; color: #999999; }
 .footer-links a:hover { color: #d4af37; }
-.footer-socials { display: flex; gap: 15px; margin-bottom: 30px; font-size: 16px; color: #ffffff; }
-.footer-socials a { transition: color 0.3s ease; }
+.footer-socials { display: flex; gap: 15px; margin-bottom: 30px; font-size: 15px; }
+.footer-socials a { color: #ffffff; transition: color 0.3s ease; }
 .footer-socials a:hover { color: #d4af37; }
-.footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.1); max-width: 1400px; margin: 60px auto 0; padding-top: 25px; text-align: center; font-size: 9px; letter-spacing: 1.5px; color: #777; text-transform: uppercase; }
+.footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.08); max-width: 1200px; margin: 60px auto 0; padding-top: 25px; text-align: center; font-size: 10px; letter-spacing: 1.5px; color: #888; text-transform: uppercase; }
 
 /* --- Super Mobile Responsiveness --- */
 @media (max-width: 1200px) {
@@ -165,21 +166,15 @@ a { text-decoration: none; color: inherit; }
 }
 
 @media (max-width: 768px) {
-    /* Stack top bar items for mobile layout */
     .top-bar { flex-direction: column; gap: 8px; text-align: center; padding: 12px 15px; }
     .top-bar-left { flex-direction: column; gap: 8px; justify-content: center; }
     .top-bar-right { margin-top: 2px; text-align: center; line-height: 1.4; }
-    
     .navbar { padding: 12px 20px; min-height: 65px; }
     .hamburger { right: 20px; }
-    
-    /* Strict Mobile Logo limits */
     .brand-logo img { max-height: 45px; }
-    
     .reservation-section { padding: 40px 15px 80px; }
     .booking-card { padding: 30px 20px; }
     .filters-row { grid-template-columns: 1fr; gap: 15px; }
-    
     .slider-wrapper { padding: 0 35px; margin-bottom: 25px; }
     .slider-track {
         grid-template-rows: repeat(4, 1fr);
@@ -188,16 +183,13 @@ a { text-decoration: none; color: inherit; }
     }
     .time-btn { font-size: 11px; padding: 12px 5px; }
     .slider-arrow { width: 30px; height: 30px; font-size: 12px; }
-    
     .card-header { padding-bottom: 20px; margin-bottom: 20px; }
     .card-brand h2 { font-size: 22px; }
-    
     .form-grid { grid-template-columns: 1fr; gap: 15px; }
     .phone-input-group { flex-direction: column; }
     .phone-code { width: 100%; }
-
     .site-footer { padding: 60px 20px 30px; text-align: center; }
-    .footer-col { min-width: 100%; align-items: center; display: flex; flex-direction: column; }
+    .footer-col { min-width: 100%; align-items: center; display: flex; flex-direction: column; padding-right: 0 !important; }
 }
 
 @media (max-width: 480px) {

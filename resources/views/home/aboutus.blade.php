@@ -7,7 +7,7 @@
     
     @include('home.css')
     <!-- Link to separated CSS file -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/aboutus.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/aboutus.css') }}?v=1.0.1">
 </head>
 <body>
     

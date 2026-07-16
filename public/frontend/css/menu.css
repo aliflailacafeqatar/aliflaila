@@ -155,8 +155,9 @@ header {
     display: inline-block;
 }
 
+/* Added specific constraints for the image logo to reduce size */
 .brand-logo img {
-    max-width: 230px;
+    max-width: 230px; /* Reduced size for desktop */
     height: auto;
     display: block;
     margin: 0 auto;

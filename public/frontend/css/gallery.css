@@ -160,7 +160,7 @@ a {
     width: 100%;
 }
 
-/* Brand Logo Layout and Image Scaling */
+/* Brand Logo */
 .brand-logo {
     text-align: center;
     display: flex;
@@ -169,24 +169,22 @@ a {
     justify-content: center;
     padding: 0 10px;
     flex: 0 0 auto;
-    position: relative;
-    z-index: 101; /* Stay above mobile menu */
+    animation: fadeInUp 0.8s ease-out;
+    z-index: 1002;
 }
 
-/* Image Logo Styles */
 .brand-logo a {
-    display: block;
-    line-height: 0;
+    display: inline-block;
 }
 
+/* Added specific constraints for the image logo to reduce size */
 .brand-logo img {
-    max-height: 45px; /* Reduced slightly from original image size */
-    width: auto;
-    object-fit: contain;
-    transition: all 0.3s ease;
+    max-width: 230px; /* Reduced size for desktop */
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
-/* Fallback/Previous Text Styles */
 .brand-logo h1 {
     font-weight: 400;
     font-size: 19px;

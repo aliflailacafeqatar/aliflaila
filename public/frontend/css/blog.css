@@ -395,6 +395,26 @@ a { text-decoration: none; color: inherit; }
 .whatsapp-widget:hover { transform: translateY(-5px) scale(1.05); }
 
 /* ==========================================
+   Modern Dark Footer
+   ========================================== */
+.site-footer { background-color: #070707; color: #999999; padding: 70px 40px 30px; font-size: 11px; line-height: 1.8; }
+.footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+.footer-col { flex: 1; min-width: 200px; }
+.footer-col.brand { flex: 1.2; padding-right: 20px; }
+.footer-col h4 { color: #ffffff; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; font-weight: 500; }
+.footer-logo { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 400; letter-spacing: 6px; color: #ffffff; margin-bottom: 20px; display: inline-block; text-transform: uppercase; }
+.footer-logo span { display: block; font-size: 8px; letter-spacing: 10px; margin-top: 6px; color: #555; text-align: center; margin-right: -10px; }
+.footer-col p { margin-bottom: 15px; color: #999999; }
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 15px; }
+.footer-links a { transition: color 0.3s ease; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; color: #999999; }
+.footer-links a:hover { color: #d4af37; }
+.footer-socials { display: flex; gap: 15px; margin-bottom: 30px; font-size: 15px; }
+.footer-socials a { color: #ffffff; transition: color 0.3s ease; }
+.footer-socials a:hover { color: #d4af37; }
+.footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.08); max-width: 1200px; margin: 60px auto 0; padding-top: 25px; text-align: center; font-size: 10px; letter-spacing: 1.5px; color: #888; text-transform: uppercase; }
+
+/* ==========================================
    Responsive Mobile Adjustments 
    ========================================== */
 @media (max-width: 1200px) {
@@ -402,7 +422,7 @@ a { text-decoration: none; color: inherit; }
     
     .navbar { 
         display: flex;
-        justify-content: center; /* PERFECTLY CENTERS THE LOGO */
+        justify-content: center;
         align-items: center;
         padding: 15px 25px; 
         position: relative; 
@@ -429,7 +449,7 @@ a { text-decoration: none; color: inherit; }
         top: 50%; 
         transform: translateY(-50%); 
         cursor: pointer;
-        z-index: 10000; /* Must sit above mobile-menu */
+        z-index: 10000;
     }
     
     .hamburger span {
@@ -459,7 +479,6 @@ a { text-decoration: none; color: inherit; }
 }
 
 @media (max-width: 768px) {
-    /* Stacked Top Bar */
     .top-bar { 
         flex-direction: column; 
         gap: 8px; 
@@ -485,6 +504,10 @@ a { text-decoration: none; color: inherit; }
     .blog-hero-subtitle { font-size: 35px; }
     
     .whatsapp-widget { width: 48px; height: 48px; font-size: 26px; bottom: 20px; right: 20px; }
+    
+    /* Mobile Footer adjustments */
+    .site-footer { padding: 60px 20px 30px; text-align: center; }
+    .footer-col { min-width: 100%; align-items: center; display: flex; flex-direction: column; padding-right: 0 !important; }
 }
 
 @media (max-width: 480px) {

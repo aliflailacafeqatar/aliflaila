@@ -1,4 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    /* --- Scroll Reveal Logic (FIXES THE BLANK FOOTER) --- */
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    // Check if browser supports IntersectionObserver
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // stop observing once revealed
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+    } else {
+        // Fallback for older browsers
+        revealElements.forEach(el => el.classList.add('active'));
+    }
             
     /* --- Mobile Navigation Logic --- */
     const hamburger = document.getElementById('hamburger');
@@ -6,22 +28,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
 
     // Toggle menu open/close
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        
-        // Prevent background scrolling when menu is open
-        if(mobileMenu.classList.contains('active')) {
-            body.classList.add('no-scroll');
-        } else {
-            body.classList.remove('no-scroll');
-        }
-    });
+    if(hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            // Prevent background scrolling when menu is open
+            if(mobileMenu.classList.contains('active')) {
+                body.classList.add('no-scroll');
+            } else {
+                body.classList.remove('no-scroll');
+            }
+        });
+    }
 
     // Close mobile menu when a link is clicked
     document.querySelectorAll('.mobile-nav-links a').forEach(link => {
         link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
+            if(hamburger) hamburger.classList.remove('active');
             mobileMenu.classList.remove('active');
             body.classList.remove('no-scroll');
         });
@@ -37,7 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to check if the button can be enabled
     function validateFormReadiness() {
-        if (hiddenTimeInput.value !== '' && agreeTerms.checked) {
+        if (!continueBtn) return;
+        
+        if (hiddenTimeInput && hiddenTimeInput.value !== '' && agreeTerms && agreeTerms.checked) {
             continueBtn.disabled = false;
             continueBtn.classList.add('ready');
         } else {
@@ -60,10 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
             this.classList.add('active');
             
             // Set the value of the hidden input for the backend
-            hiddenTimeInput.value = this.innerText;
+            if (hiddenTimeInput) hiddenTimeInput.value = this.innerText;
             
             // Update button UI
-            continueBtn.innerHTML = `Continue with ${this.innerText} <i class="fas fa-arrow-right" style="margin-left:8px;"></i>`;
+            if (continueBtn) {
+                continueBtn.innerHTML = `Continue with ${this.innerText} <i class="fas fa-arrow-right" style="margin-left:8px;"></i>`;
+            }
             
             // Check if form is ready to be submitted
             validateFormReadiness();
@@ -91,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeFood.push(btn.getAttribute('data-id')); 
             });
             // Combine array into a string (e.g., "1,4,7")
-            hiddenFoodInput.value = activeFood.join(',');
+            if(hiddenFoodInput) hiddenFoodInput.value = activeFood.join(',');
         });
     }
 
@@ -99,18 +127,25 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupAccordion(headerId, contentId) {
         const header = document.getElementById(headerId);
         const content = document.getElementById(contentId);
+        
+        if(!header || !content) return;
+        
         const icon = header.querySelector('i');
 
         header.addEventListener('click', () => {
             header.classList.toggle('open');
             if (header.classList.contains('open')) {
                 content.style.maxHeight = '1000px';
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
+                if(icon) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
             } else {
                 content.style.maxHeight = '0px';
-                icon.classList.remove('fa-chevron-up');
-                icon.classList.add('fa-chevron-down');
+                if(icon) {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
             }
         });
     }
@@ -125,15 +160,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const leftBtn = wrapper.querySelector('.left-arrow');
         const rightBtn = wrapper.querySelector('.right-arrow');
 
-        leftBtn.addEventListener('click', () => {
-            // Scroll back by the width of the visible track window
-            track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
-        });
+        if(leftBtn && track) {
+            leftBtn.addEventListener('click', () => {
+                // Scroll back by the width of the visible track window
+                track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+            });
+        }
 
-        rightBtn.addEventListener('click', () => {
-            // Scroll forward by the width of the visible track window
-            track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
-        });
+        if(rightBtn && track) {
+            rightBtn.addEventListener('click', () => {
+                // Scroll forward by the width of the visible track window
+                track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+            });
+        }
     });
 
     /* --- Dynamic Summary Update Logic --- */

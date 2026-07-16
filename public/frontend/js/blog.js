@@ -50,11 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* --- Intersection Observer for fade-up animations --- */
+    /* --- Intersection Observer for fade-up animations (Fixed for Footer) --- */
     const observerOptions = {
         root: null,
-        rootMargin: '0px',
-        threshold: 0.15
+        rootMargin: '0px 0px -20px 0px', // Triggers slightly before it enters the viewport
+        threshold: 0.05 // Lowered to 0.05 so taller elements like the footer columns trigger instantly
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
