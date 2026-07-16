@@ -7,7 +7,7 @@
     
     @include('home.css')
 
-    <link rel="stylesheet" href="{{ asset('frontend/css/bookatable.css') }}?v=1.0.1">
+    <link rel="stylesheet" href="{{ asset('frontend/css/bookatable.css') }}?v=1.0.2">
 
 </head>
 <body>
