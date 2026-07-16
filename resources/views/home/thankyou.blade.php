@@ -13,6 +13,20 @@
 </head>
 <body>
 
+    <!-- Mobile Full-Screen Slide-in Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-nav-links">
+            <li><a href="{{ url('/') }}">HOME</a></li>
+            <li><a href="{{ url('/menu') }}">MENU</a></li>
+            <li><a href="{{ url('/bookatable') }}">RESERVATIONS</a></li>
+            <li><a href="{{ url('/blog') }}">BLOG</a></li>
+            <li><a href="{{ url('/aboutus') }}">ABOUT US</a></li>
+            <li><a href="{{ url('/gallery') }}">GALLERY</a></li>
+            <li><a href="{{ url('/contactus') }}">CONTACT US</a></li>
+        </ul>
+        <button class="btn-reserve" onclick="window.location.href='{{ url('/reserve') }}'">RESERVE A TABLE</button>
+    </div>
+
     @include('home.header')
 
     <main>
