@@ -204,6 +204,6 @@
 
     @include('home.footer')
 
-    <script src="{{ asset('frontend/js/bookatable.js') }}"></script>
+    <script src="{{ asset('frontend/js/bookatable.js') }}?v=1.0.1"></script>
 </body>
 </html>
