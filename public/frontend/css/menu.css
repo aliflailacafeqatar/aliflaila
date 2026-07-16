@@ -730,10 +730,12 @@ header {
     .navbar { padding: 12px 20px; }
     .hamburger { right: 20px; }
     
-    .brand-logo img { width: 110px; }
+    /* Increased logo size strictly for mobile */
+    .brand-logo img { width: 190px; }
     
-    .brand-logo h1 { font-size: 16px; letter-spacing: 2px; }
-    .brand-logo span { font-size: 8px; letter-spacing: 5px; }
+    /* Adjusted textual fallback to match a larger proportion as well */
+    .brand-logo h1 { font-size: 20px; letter-spacing: 3px; }
+    .brand-logo span { font-size: 9px; letter-spacing: 6px; }
 
     .page-header { height: 30vh; min-height: 250px; }
     .page-header-content h2 { font-size: 30px; }
