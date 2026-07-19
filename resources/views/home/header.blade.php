@@ -1,11 +1,11 @@
 <header>
     <div class="top-bar">
         <div class="top-bar-left">
-            <span><i class="fas fa-phone-alt"></i> +971 777723547</span>
-            <span><i class="fas fa-asterisk"></i> LUXURY AVENUE, DOHA, QATAR</span>
+            <span><i class="fas fa-phone-alt"></i> +974 77723547</span>
+            <span><i class="fas fa-asterisk"></i> Zone: 71th , street: 750th, Umm Salal Mohammed, Doha, Qatar</span>
         </div>
         <div class="top-bar-right">
-            <span>MON - THU: 9AM TO 12AM | FRI - SUN: 9AM TO 1AM</span>
+            <span>MON - THU: 24/7 | FRI - SUN: 24/7</span>
         </div>
     </div>
 
